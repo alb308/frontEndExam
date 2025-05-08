@@ -1,7 +1,24 @@
 {
+  "name": "frontendexam",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alb308/frontEndExam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alb308/frontEndExam/issues"
+  },
+  "homepage": "https://github.com/alb308/frontEndExam#readme",
+  "description": "",
   "dependencies": {
-    "bootstrap": "^5.3.6",
-    "react-bootstrap": "^2.10.9",
-    "react-doom": "^1.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
