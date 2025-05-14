@@ -1,0 +1,8 @@
+.monster {
+  display: flex;
+    text-align: center;
+    color: #00ff00;
+  text-shadow: 0 0 15px #ae00ff, 0 0 20px #3b004d;
+  
+  }
+  
