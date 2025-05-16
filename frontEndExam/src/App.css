@@ -1,16 +1,16 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 html, body {
-  background-color: #000;
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: black; /* facoltativo, per coerenza */
   height: 100%;
-  overflow-x: hidden;
+  width: 100%;
 }
-
 
 .app-layout {
   display: flex;

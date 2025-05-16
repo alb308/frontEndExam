@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useUser } from './UserContext';
 import logo from '../assets/logo.png';
@@ -6,14 +6,19 @@ import './navbar.css';
 
 function Navbar() {
   const { user } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="sidebar open">
+    <div
+      className={`sidebar ${isOpen ? 'open' : ''}`}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
+    >
       <div className="sidebar-header">
         <img src={logo} alt="Logo" className="sidebar-logo" />
       </div>
       <ul className="sidebar-menu">
-        <li><Link to="/">Home</Link></li>
+        <li><Link to="/home">Home</Link></li>
         <li><Link to="/prodotti">Prodotti</Link></li>
         <li><Link to="/promo">Promozioni</Link></li>
         {!user && (
