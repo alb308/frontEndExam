@@ -26,3 +26,18 @@
   font-size: 14px;
   color: #fff;
 }
+
+.latta-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.latta-link:hover .latta-img {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.latta-link:hover .latta-nome {
+  color: #00ff00;
+}
