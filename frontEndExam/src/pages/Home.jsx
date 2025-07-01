@@ -8,7 +8,7 @@ function Home() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("https://api.weatherapi.com/v1/current.json?key=d16ed3b4d0e2f2ab51c497191022a0db&q=Barrafranca&lang=it")
+    fetch("https://api.weatherapi.com/v1/current.json?key=23a6e3a7c3928eaddadd8b5de00bb30b=Barrafranca&lang=it")
       .then((res) => res.json())
       .then((data) => {
         if (data.error) throw new Error(data.error.message);
