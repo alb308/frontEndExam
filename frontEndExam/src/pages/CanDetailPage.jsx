@@ -1,41 +1,30 @@
 // src/pages/CanDetailPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCanDetail } from '../redux/actions/cansActions';
+import { fetchComments, addComment } from '../redux/actions/commentsActions';
 import './CanDetailPage.css';
 
 function CanDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [can, setCan] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  
+  const { currentCan: can, loading } = useSelector(state => state.cans);
+  const { comments } = useSelector(state => state.comments);
+  const { isAuthenticated, user } = useSelector(state => state.auth);
+  
   const [rating, setRating] = useState(0);
   const [showRating, setShowRating] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
-  const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState('');
   const [showCommentForm, setShowCommentForm] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    setIsAuthenticated(!!token);
-  }, []);
-
-  useEffect(() => {
-    fetch('/lattine.json')
-      .then((res) => res.json())
-      .then((data) => {
-        const foundCan = data.find((item) => item.id === parseInt(id));
-        setCan(foundCan);
-        setLoading(false);
-      });
-
-    // Carica i commenti
-    fetch(`/api/comments?canId=${id}`)
-      .then(res => res.json())
-      .then(data => setComments(data))
-      .catch(console.error);
-  }, [id]);
+    dispatch(fetchCanDetail(id));
+    dispatch(fetchComments(id));
+  }, [dispatch, id]);
 
   const handleRatingClick = () => {
     if (!isAuthenticated) {
@@ -45,59 +34,43 @@ function CanDetailPage() {
     setShowRating(!showRating);
   };
 
-  const handleRate = (star) => {
+  const handleRate = async (star) => {
     setRating(star);
-    fetch('/api/ratings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-      },
-      body: JSON.stringify({ canId: id, rating: star })
-    })
-    .then(response => {
+    try {
+      const response = await fetch('http://localhost:3001/ratings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          canId: parseInt(id), 
+          userId: user.id,
+          rating: star,
+          createdAt: new Date().toISOString()
+        })
+      });
+      
       if (!response.ok) throw new Error('Errore nel salvataggio del voto');
-      return response.json();
-    })
-    .catch(error => {
+    } catch (error) {
       console.error("Errore:", error);
-    });
+    }
     setShowRating(false);
   };
 
-  const handleCommentSubmit = (e) => {
+  const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!newComment.trim()) return;
 
-    fetch('/api/comments', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${localStorage.getItem('authToken')}`
-      },
-      body: JSON.stringify({ 
-        canId: id, 
-        text: newComment,
-        userId: localStorage.getItem('userId')
-      })
-    })
-    .then(response => {
-      if (!response.ok) throw new Error('Errore nel salvataggio del commento');
-      return response.json();
-    })
-    .then(comment => {
-      setComments([...comments, comment]);
+    const result = await dispatch(addComment(id, newComment));
+    if (result.success) {
       setNewComment('');
       setShowCommentForm(false);
-    })
-    .catch(error => {
-      console.error("Errore:", error);
-    });
+    }
   };
 
   const navigateToAuth = (isLogin) => {
     navigate(isLogin ? '/login' : '/register', { 
-      state: { from: `/can/${id}` } 
+      state: { from: `/cans/${id}` } 
     });
   };
 
@@ -246,4 +219,3 @@ function CanDetailPage() {
 }
 
 export default CanDetailPage;
- 

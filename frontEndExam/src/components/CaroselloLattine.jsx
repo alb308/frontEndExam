@@ -1,26 +1,20 @@
-import React, { useEffect, useState } from "react";
+// src/components/CaroselloLattine.jsx
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCans } from '../redux/actions/cansActions';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Link } from "react-router-dom"; // Importa Link
+import { Link } from "react-router-dom";
 import "./CaroselloLattine.css";
 
 function CaroselloLattine() {
-  const [lattine, setLattine] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useDispatch();
+  const { cans, loading, error } = useSelector(state => state.cans);
 
   useEffect(() => {
-    fetch("/lattine.json")
-      .then((res) => res.json())
-      .then((data) => {
-        setLattine(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Errore nel caricamento JSON:", err);
-        setLoading(false);
-      });
-  }, []);
+    dispatch(fetchCans());
+  }, [dispatch]);
 
   const settings = {
     dots: false,
@@ -43,21 +37,21 @@ function CaroselloLattine() {
   };
 
   if (loading) return <div className="carosello-container">Caricamento...</div>;
-  if (!lattine.length) return <div>Nessuna lattina disponibile.</div>;
+  if (error) return <div className="carosello-container">Errore: {error}</div>;
+  if (!cans || cans.length === 0) return <div>Nessuna lattina disponibile.</div>;
 
   return (
     <div className="carosello-container">
       <Slider {...settings}>
-        {lattine.map((latta) => (
+        {cans.map((latta) => (
           <div key={latta.id} className="latta-card">
-            {/* Sostituisci il tag img con Link + img */}
             <Link to={`/cans/${latta.id}`} className="latta-link">
               <img
                 src={latta.img}
                 alt={latta.nome}
                 className="latta-img"
                 onError={(e) => {
-                  e.target.src = "/placeholder.png"; // Fallback se l'immagine non carica
+                  e.target.src = "/placeholder.png";
                 }}
               />
               <p className="latta-nome">{latta.nome}</p>

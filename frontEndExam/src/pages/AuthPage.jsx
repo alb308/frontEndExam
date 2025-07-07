@@ -1,21 +1,36 @@
 // src/pages/AuthPage.jsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { login, register } from '../redux/actions/authActions';
 import './AuthPage.css';
 
 function AuthPage() {
-  const [isLogin, setIsLogin] = useState(true);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  
+  const { loading, error: authError, isAuthenticated } = useSelector(state => state.auth);
+  
+  const [isLogin, setIsLogin] = useState(location.pathname === '/login');
   const [formData, setFormData] = useState({
     email: '',
     password: '',
-    username: '' // Solo per registrazione
+    username: ''
   });
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   
-  const navigate = useNavigate();
-  const location = useLocation();
   const from = location.state?.from || '/';
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(from, { replace: true });
+    }
+  }, [isAuthenticated, navigate, from]);
+
+  useEffect(() => {
+    setIsLogin(location.pathname === '/login');
+  }, [location.pathname]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,41 +42,28 @@ function AuthPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
 
-    try {
-      const endpoint = isLogin ? '/api/login' : '/api/register';
-      const payload = isLogin 
-        ? { email: formData.email, password: formData.password }
-        : formData;
-
-      const response = await fetch(endpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Errore durante l\'operazione');
+    if (isLogin) {
+      const result = await dispatch(login(formData.email, formData.password));
+      if (!result.success) {
+        setError(result.error || 'Errore durante il login');
       }
-
-      // Salva il token e reindirizza
-      localStorage.setItem('authToken', data.token);
-      navigate(from, { replace: true });
-    } catch (err) {
-      setError(err.message || 'Si è verificato un errore');
-    } finally {
-      setLoading(false);
+    } else {
+      const userData = {
+        email: formData.email,
+        password: formData.password,
+        name: formData.username
+      };
+      const result = await dispatch(register(userData));
+      if (!result.success) {
+        setError(result.error || 'Errore durante la registrazione');
+      }
     }
   };
 
   const toggleAuthMode = () => {
-    setIsLogin(!isLogin);
+    navigate(isLogin ? '/register' : '/login');
     setError('');
   };
 
@@ -70,7 +72,7 @@ function AuthPage() {
       <div className="auth-card">
         <h2>{isLogin ? 'Accedi al tuo account' : 'Crea un nuovo account'}</h2>
         
-        {error && <div className="auth-error">{error}</div>}
+        {(error || authError) && <div className="auth-error">{error || authError}</div>}
 
         <form onSubmit={handleSubmit}>
           {!isLogin && (

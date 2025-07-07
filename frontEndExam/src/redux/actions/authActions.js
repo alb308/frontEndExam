@@ -1,5 +1,5 @@
 // src/redux/actions/authActions.js
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 // Action creators
 export const loginRequest = () => ({

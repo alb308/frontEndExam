@@ -1,5 +1,5 @@
 // src/redux/actions/cansActions.js
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://localhost:3001';
 
 // Fetch all cans with filters and pagination
 export const fetchCans = (filters = {}, page = 1, limit = 12) => {
