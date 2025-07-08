@@ -33,7 +33,6 @@ function Layout() {
         <Route path="/register" element={<AuthPage />} />
         <Route path="/admin" element={<AdminPanel />} />
         <Route path="/prodotti" element={<Prodotti />} />
-        <Route path="/test-meteo" element={<TestMeteo />} />
         <Route path="/cans/:id" element={<CanDetailPage />} />
       </Routes>
     </>
