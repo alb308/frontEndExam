@@ -1,313 +1,172 @@
 // src/pages/AdminPanel.jsx
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCans, addCan, updateCan, deleteCan } from '../redux/actions/cansActions';
+import { useSelector } from 'react-redux';
 import './adminPanel.css';
 
 function AdminPanel() {
-  const dispatch = useDispatch();
   const { user, isAuthenticated } = useSelector(state => state.auth);
-  const { cans } = useSelector(state => state.cans);
+  const [cans, setCans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState('');
   
-  const [formData, setFormData] = useState({
-    nome: '',
-    category: '',
-    year: new Date().getFullYear(),
-    country: 'USA',
-    size: '500ml',
-    img: '',
-    limited: false
-  });
+  // State del form - più semplice
+  const [nome, setNome] = useState('');
+  const [category, setCategory] = useState('');
+  const [year, setYear] = useState(2025);
+  const [img, setImg] = useState('');
+  const [limited, setLimited] = useState(false);
   const [editingId, setEditingId] = useState(null);
-  const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [operationMessage, setOperationMessage] = useState('');
 
+  // Carica le lattine
   useEffect(() => {
-    dispatch(fetchCans());
-  }, [dispatch]);
+    loadCans();
+  }, []);
 
+  async function loadCans() {
+    try {
+      const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
+      const data = await response.json();
+      setCans(data);
+    } catch (error) {
+      setMessage('Errore caricamento');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // Controllo accesso
   if (!isAuthenticated || user?.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
-  const validateForm = () => {
-    const newErrors = {};
-    
-    if (!formData.nome.trim()) {
-      newErrors.nome = 'Nome lattina è obbligatorio';
-    } else if (formData.nome.length < 2) {
-      newErrors.nome = 'Nome deve avere almeno 2 caratteri';
-    }
-    
-    if (!formData.category.trim()) {
-      newErrors.category = 'Categoria è obbligatoria';
-    }
-    
-    if (!formData.year || formData.year < 1980 || formData.year > new Date().getFullYear() + 1) {
-      newErrors.year = 'Anno deve essere tra 1980 e ' + (new Date().getFullYear() + 1);
-    }
-    
-    if (!formData.img.trim()) {
-      newErrors.img = 'URL immagine è obbligatoria';
-    } else if (!isValidImageUrl(formData.img)) {
-      newErrors.img = 'URL immagine non valida (deve terminare con .jpg, .jpeg, .png, .gif)';
-    }
-    
-    return newErrors;
-  };
-
-  const isValidImageUrl = (url) => {
-    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.webp'];
-    return imageExtensions.some(ext => url.toLowerCase().endsWith(ext));
-  };
-
-  const handleSave = async () => {
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
+  // Salva lattina
+  async function saveCan() {
+    if (!nome || !category || !img) {
+      setMessage('Compila i campi obbligatori');
       return;
     }
-    
-    setIsSubmitting(true);
-    setErrors({});
-    setOperationMessage('');
-    
+
+    const canData = { nome, category, year, img, limited };
+    const url = editingId 
+      ? `http://localhost:3001/cans/${editingId}`
+      : 'http://localhost:3001/cans';
+    const method = editingId ? 'PATCH' : 'POST';
+
     try {
-      if (editingId !== null) {
-        const result = await dispatch(updateCan(editingId, formData));
-        if (result.success) {
-          setOperationMessage('Lattina aggiornata con successo!');
-          setEditingId(null);
-        } else {
-          setOperationMessage('Errore nell\'aggiornamento della lattina');
-        }
-      } else {
-        const result = await dispatch(addCan(formData));
-        if (result.success) {
-          setOperationMessage('Lattina aggiunta con successo!');
-        } else {
-          setOperationMessage('Errore nell\'aggiunta della lattina');
-        }
-      }
-      
-      setFormData({
-        nome: '',
-        category: '',
-        year: new Date().getFullYear(),
-        country: 'USA',
-        size: '500ml',
-        img: '',
-        limited: false
+      await fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(editingId ? canData : { ...canData, id: Date.now() })
       });
+
+      setMessage(editingId ? 'Aggiornato!' : 'Aggiunto!');
+      clearForm();
+      loadCans();
     } catch (error) {
-      setOperationMessage('Errore di connessione');
-    } finally {
-      setIsSubmitting(false);
+      setMessage('Errore salvataggio');
     }
-  };
+  }
 
-  const handleEdit = (can) => {
-    setFormData({
-      nome: can.nome,
-      category: can.category,
-      year: can.year,
-      country: can.country,
-      size: can.size,
-      img: can.img || '',
-      limited: can.limited || false
-    });
+  // Modifica lattina
+  function editCan(can) {
+    setNome(can.nome);
+    setCategory(can.category);
+    setYear(can.year);
+    setImg(can.img);
+    setLimited(can.limited || false);
     setEditingId(can.id);
-    setErrors({});
-    setOperationMessage('');
-  };
+  }
 
-  const handleDelete = async (id) => {
-    if (window.confirm('Sei sicuro di voler eliminare questa lattina?')) {
-      setIsSubmitting(true);
-      setOperationMessage('');
-      
-      try {
-        const result = await dispatch(deleteCan(id));
-        if (result.success) {
-          setOperationMessage('Lattina eliminata con successo!');
-        } else {
-          setOperationMessage('Errore nell\'eliminazione della lattina');
-        }
-      } catch (error) {
-        setOperationMessage('Errore di connessione');
-      } finally {
-        setIsSubmitting(false);
-      }
-    }
-  };
+  // Elimina lattina
+  async function deleteCan(id) {
+    if (!confirm('Eliminare?')) return;
 
-  const handleInputChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-    
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
+    try {
+      await fetch(`http://localhost:3001/cans/${id}`, { method: 'DELETE' });
+      setMessage('Eliminato!');
+      loadCans();
+    } catch (error) {
+      setMessage('Errore eliminazione');
     }
-  };
+  }
+
+  // Pulisci form
+  function clearForm() {
+    setNome('');
+    setCategory('');
+    setYear(2025);
+    setImg('');
+    setLimited(false);
+    setEditingId(null);
+  }
 
   return (
     <div className="admin-panel">
       <div className="admin-container">
-        <h1 className="admin-title">🛠️ Gestione Lattine Monster Energy</h1>
-        <p className="admin-subtitle">Pannello di amministrazione per la gestione del catalogo</p>
+        <h1 className="admin-title">🛠️ Admin Panel</h1>
         
-        {operationMessage && (
-          <div className={`operation-message ${operationMessage.includes('successo') ? 'success' : 'error'}`}>
-            {operationMessage}
+        {message && (
+          <div className={`operation-message ${message.includes('!') ? 'success' : 'error'}`}>
+            {message}
           </div>
         )}
         
         <div className="form-section">
-          <h2>{editingId !== null ? 'Modifica Lattina' : 'Aggiungi Nuova Lattina'}</h2>
+          <h2>{editingId ? 'Modifica' : 'Aggiungi'} Lattina</h2>
           
-          <div className="form-grid">
-            <div className="form-group">
-              <label>Nome lattina *</label>
-              <input
-                type="text"
-                name="nome"
-                placeholder="Es. Monster Energy Original"
-                value={formData.nome}
-                onChange={handleInputChange}
-                className={errors.nome ? 'error' : ''}
+          <div style={{ display: 'grid', gap: '1rem', maxWidth: '500px' }}>
+            <input 
+              placeholder="Nome lattina *" 
+              value={nome} 
+              onChange={(e) => setNome(e.target.value)}
+              style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
+            />
+            
+            <input 
+              placeholder="Categoria *" 
+              value={category} 
+              onChange={(e) => setCategory(e.target.value)}
+              style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
+            />
+            
+            <input 
+              type="number" 
+              placeholder="Anno" 
+              value={year} 
+              onChange={(e) => setYear(Number(e.target.value))}
+              style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
+            />
+            
+            <input 
+              placeholder="URL Immagine *" 
+              value={img} 
+              onChange={(e) => setImg(e.target.value)}
+              style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
+            />
+            
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff' }}>
+              <input 
+                type="checkbox" 
+                checked={limited} 
+                onChange={(e) => setLimited(e.target.checked)} 
               />
-              {errors.nome && <span className="error-message">{errors.nome}</span>}
-            </div>
-            
-            <div className="form-group">
-              <label>Categoria *</label>
-              <input
-                type="text"
-                name="category"
-                placeholder="Es. Original, Zero Sugar, Ultra"
-                value={formData.category}
-                onChange={handleInputChange}
-                className={errors.category ? 'error' : ''}
-              />
-              {errors.category && <span className="error-message">{errors.category}</span>}
-            </div>
-            
-            <div className="form-group">
-              <label>Anno *</label>
-              <input
-                type="number"
-                name="year"
-                min="1980"
-                max={new Date().getFullYear() + 1}
-                value={formData.year}
-                onChange={handleInputChange}
-                className={errors.year ? 'error' : ''}
-              />
-              {errors.year && <span className="error-message">{errors.year}</span>}
-            </div>
-            
-            <div className="form-group">
-              <label>Paese</label>
-              <select 
-                name="country"
-                value={formData.country}
-                onChange={handleInputChange}
-              >
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Italy">Italy</option>
-                <option value="Germany">Germany</option>
-                <option value="France">France</option>
-                <option value="Japan">Japan</option>
-              </select>
-            </div>
-            
-            <div className="form-group">
-              <label>Dimensione</label>
-              <select 
-                name="size"
-                value={formData.size}
-                onChange={handleInputChange}
-              >
-                <option value="250ml">250ml</option>
-                <option value="355ml">355ml</option>
-                <option value="500ml">500ml</option>
-                <option value="710ml">710ml</option>
-              </select>
-            </div>
-            
-            <div className="form-group full-width">
-              <label>URL Immagine *</label>
-              <input
-                type="url"
-                name="img"
-                placeholder="https://example.com/image.jpg"
-                value={formData.img}
-                onChange={handleInputChange}
-                className={errors.img ? 'error' : ''}
-              />
-              {errors.img && <span className="error-message">{errors.img}</span>}
-            </div>
-            
-            <div className="form-group checkbox-group">
-              <label className="checkbox-label">
-                <input
-                  type="checkbox"
-                  name="limited"
-                  checked={formData.limited}
-                  onChange={handleInputChange}
-                />
-                Edizione limitata
-              </label>
-            </div>
+              Edizione Limitata
+            </label>
           </div>
           
-          {formData.img && (
-            <div className="image-preview">
-              <h3>Anteprima immagine:</h3>
-              <img 
-                src={formData.img} 
-                alt="Anteprima" 
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
-          )}
-          
-          <div className="form-actions">
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
             <button 
-              className="save-btn"
-              onClick={handleSave}
-              disabled={isSubmitting}
+              onClick={saveCan} 
+              style={{ background: '#00ff00', color: '#000', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '4px', cursor: 'pointer' }}
             >
-              {isSubmitting ? 'Salvataggio...' : (editingId !== null ? '✏️ Modifica' : '➕ Aggiungi')}
+              {editingId ? 'Modifica' : 'Aggiungi'}
             </button>
             
-            {editingId !== null && (
+            {editingId && (
               <button 
-                className="cancel-btn"
-                onClick={() => {
-                  setEditingId(null);
-                  setFormData({
-                    nome: '',
-                    category: '',
-                    year: new Date().getFullYear(),
-                    country: 'USA',
-                    size: '500ml',
-                    img: '',
-                    limited: false
-                  });
-                  setErrors({});
-                }}
+                onClick={clearForm}
+                style={{ background: '#ff3333', color: '#fff', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '4px', cursor: 'pointer' }}
               >
                 Annulla
               </button>
@@ -316,51 +175,40 @@ function AdminPanel() {
         </div>
         
         <div className="cans-section">
-          <h2>Lattine nel Catalogo ({cans.length})</h2>
+          <h2>Lattine ({cans.length})</h2>
           
-          <div className="cans-grid">
-            {cans.map((can) => (
-              <div key={can.id} className="can-card">
-                <div className="can-image">
-                  <img 
-                    src={can.img ? `/lattine/${can.img}` : '/lattine/placeholder.jpg'} 
-                    alt={can.nome}
-                    onError={(e) => {
-                      e.target.src = '/lattine/placeholder.jpg';
-                    }}
-                  />
-                  {can.limited && <span className="limited-badge">Limited</span>}
-                </div>
-                
-                <div className="can-info">
-                  <h3>{can.nome}</h3>
-                  <p className="can-category">{can.category}</p>
-                  <div className="can-details">
-                    <span>📅 {can.year}</span>
-                    <span>🌍 {can.country}</span>
-                    <span>📏 {can.size}</span>
+          {loading ? (
+            <div style={{ textAlign: 'center', color: '#00ff00' }}>Caricamento...</div>
+          ) : (
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+              {cans.map(can => (
+                <div key={can.id} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #333' }}>
+                  <img src={can.img} alt={can.nome} style={{ width: 80, height: 120, objectFit: 'contain' }} />
+                  <h3 style={{ color: '#00ff00', margin: '0.5rem 0' }}>{can.nome}</h3>
+                  <p style={{ color: '#ccc', margin: '0.5rem 0' }}>{can.category} • {can.year}</p>
+                  {can.limited && (
+                    <span style={{ background: '#ffd700', color: '#000', padding: '0.2rem 0.5rem', borderRadius: '3px', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                      Limited
+                    </span>
+                  )}
+                  <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem' }}>
+                    <button 
+                      onClick={() => editCan(can)}
+                      style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
+                    >
+                      ✏️
+                    </button>
+                    <button 
+                      onClick={() => deleteCan(can.id)}
+                      style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
+                    >
+                      🗑️
+                    </button>
                   </div>
                 </div>
-                
-                <div className="can-actions">
-                  <button 
-                    className="edit-btn"
-                    onClick={() => handleEdit(can)}
-                    disabled={isSubmitting}
-                  >
-                    ✏️
-                  </button>
-                  <button 
-                    className="delete-btn"
-                    onClick={() => handleDelete(can.id)}
-                    disabled={isSubmitting}
-                  >
-                    🗑️
-                  </button>
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

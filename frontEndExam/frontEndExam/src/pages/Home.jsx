@@ -11,19 +11,6 @@ function Home() {
   return (
     <div className="home-container">
       <h1>La mia collezzione di Monster :D</h1>
-      <p>Colleziono lattine dal 1 aprile 2018</p>
-
-      {weather && (
-        <div style={{ marginBottom: "1rem" }}>
-          <p>
-            ☁️ Meteo a Barrafranca: <strong>{weather.temp}°C</strong>, {weather.condition}
-          </p>
-          <img src={weather.icon} alt="Icona meteo" />
-        </div>
-      )}
-
-      {error && <p style={{ color: "red" }}>❌ {error}</p>}
-
       <CaroselloLattine />
       <Timer />
     </div>

@@ -1,13 +1,14 @@
 // src/pages/Recensioni.jsx
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCans } from '../redux/actions/cansActions';
+import { useSelector } from 'react-redux';
 import './recensioni.css';
 
 function Recensioni() {
-  const dispatch = useDispatch();
-  const { cans } = useSelector(state => state.cans);
   const { user, isAuthenticated } = useSelector(state => state.auth);
+  
+  const [allCans, setAllCans] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
   
   const [formData, setFormData] = useState({
     canId: '',
@@ -22,12 +23,24 @@ function Recensioni() {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchCans());
+    fetchAllCans();
     fetchReviews();
-  }, [dispatch]);
+  }, []);
+
+  const fetchAllCans = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
+      const data = await response.json();
+      console.log(`✅ Recensioni - Lattine caricate: ${data.length}`);
+      setAllCans(data);
+    } catch (error) {
+      console.error('Errore nel caricamento lattine:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchReviews = async () => {
     try {
@@ -89,7 +102,7 @@ function Recensioni() {
     setErrors({});
     
     try {
-      const selectedCan = cans.find(can => can.id === parseInt(formData.canId));
+      const selectedCan = allCans.find(can => can.id === parseInt(formData.canId));
       const reviewData = {
         ...formData,
         canId: parseInt(formData.canId),
@@ -150,6 +163,14 @@ function Recensioni() {
     return '★'.repeat(rating) + '☆'.repeat(5 - rating);
   };
 
+  if (loading) return (
+    <div className="recensioni-page">
+      <div style={{ textAlign: 'center', color: '#00ff00', padding: '2rem' }}>
+        ⚡ Caricamento recensioni...
+      </div>
+    </div>
+  );
+
   return (
     <div className="recensioni-page">
       <div className="recensioni-container">
@@ -174,7 +195,7 @@ function Recensioni() {
                 className={errors.canId ? 'error' : ''}
               >
                 <option value="">Seleziona una lattina</option>
-                {cans.map(can => (
+                {allCans.map(can => (
                   <option key={can.id} value={can.id}>
                     {can.nome} - {can.category}
                   </option>

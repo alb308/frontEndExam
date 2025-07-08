@@ -1,13 +1,12 @@
 // src/pages/Prodotti.jsx
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCans, setFilters, setPage } from '../redux/actions/cansActions';
 import { Link } from 'react-router-dom';
 import './Prodotti.css';
 
 function Prodotti() {
-  const dispatch = useDispatch();
-  const { cans, loading, filters, pagination } = useSelector(state => state.cans);
+  const [allCans, setAllCans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const [localFilters, setLocalFilters] = useState({
     category: '',
@@ -16,14 +15,36 @@ function Prodotti() {
     search: ''
   });
 
-  // Categorie uniche dalle lattine
-  const categories = [...new Set(cans.map(can => can.category))].filter(Boolean);
-  const years = [...new Set(cans.map(can => can.year))].filter(Boolean).sort((a, b) => b - a);
-  const countries = [...new Set(cans.map(can => can.country))].filter(Boolean);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
 
+  // Carica tutte le lattine all'avvio
   useEffect(() => {
-    dispatch(fetchCans(filters, pagination.page, pagination.limit));
-  }, [dispatch, filters, pagination.page]);
+    const fetchAllCans = async () => {
+      try {
+        setLoading(true);
+        // Usa la stessa strategia del carosello per json-server v1.0
+        const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
+        const data = await response.json();
+        
+        console.log(`✅ Prodotti - Lattine caricate: ${data.length}`);
+        setAllCans(data);
+        setError(null);
+      } catch (err) {
+        console.error('❌ Errore nel caricamento prodotti:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllCans();
+  }, []);
+
+  // Categorie, anni e paesi unici dalle lattine
+  const categories = [...new Set(allCans.map(can => can.category))].filter(Boolean);
+  const years = [...new Set(allCans.map(can => can.year))].filter(Boolean).sort((a, b) => b - a);
+  const countries = [...new Set(allCans.map(can => can.country))].filter(Boolean);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -31,11 +52,11 @@ function Prodotti() {
       ...prev,
       [name]: value
     }));
+    setCurrentPage(1); // Reset alla prima pagina quando cambiano i filtri
   };
 
   const applyFilters = () => {
-    dispatch(setFilters(localFilters));
-    dispatch(setPage(1)); // Reset alla prima pagina
+    setCurrentPage(1);
   };
 
   const resetFilters = () => {
@@ -46,17 +67,11 @@ function Prodotti() {
       search: ''
     };
     setLocalFilters(emptyFilters);
-    dispatch(setFilters(emptyFilters));
-    dispatch(setPage(1));
-  };
-
-  const handlePageChange = (newPage) => {
-    dispatch(setPage(newPage));
-    window.scrollTo(0, 0);
+    setCurrentPage(1);
   };
 
   // Filtro locale per i risultati
-  const filteredCans = cans.filter(can => {
+  const filteredCans = allCans.filter(can => {
     const matchCategory = !localFilters.category || can.category === localFilters.category;
     const matchYear = !localFilters.year || can.year?.toString() === localFilters.year;
     const matchCountry = !localFilters.country || can.country === localFilters.country;
@@ -67,13 +82,24 @@ function Prodotti() {
   });
 
   // Paginazione
-  const itemsPerPage = 12;
   const totalPages = Math.ceil(filteredCans.length / itemsPerPage);
-  const currentPage = pagination.page;
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCans = filteredCans.slice(startIndex, startIndex + itemsPerPage);
 
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    window.scrollTo(0, 0);
+  };
+
   if (loading) return <div className="prodotti-loading">Caricamento...</div>;
+
+  if (error) return (
+    <div className="prodotti-container">
+      <div style={{ textAlign: 'center', color: '#ff0000', padding: '2rem' }}>
+        ❌ Errore: {error}
+      </div>
+    </div>
+  );
 
   return (
     <div className="prodotti-container">
@@ -149,7 +175,10 @@ function Prodotti() {
 
       {/* Risultati */}
       <div className="results-info">
-        <p>Trovate {filteredCans.length} lattine</p>
+        <p>
+          Trovate {filteredCans.length} lattine 
+          {allCans.length > 0 && ` (totale collezione: ${allCans.length})`}
+        </p>
       </div>
 
       {/* Griglia prodotti */}

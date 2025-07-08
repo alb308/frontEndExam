@@ -1,16 +1,19 @@
 // src/redux/actions/cansActions.js
 const API_URL = 'http://localhost:3001';
 
-// Fetch all cans with filters and pagination
-export const fetchCans = (filters = {}, page = 1, limit = 12) => {
+// Fetch all cans with filters - compatibile con json-server v1.0
+export const fetchCans = (filters = {}, page = 1, limit = 1000) => { // Default alto per prendere tutto
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CANS_REQUEST' });
     
     try {
-      // Costruisci query string con filtri
+      // Per json-server v1.0, usa _start e _end invece di _limit
+      const start = (page - 1) * limit;
+      const end = start + limit;
+      
       let queryParams = new URLSearchParams({
-        _page: page,
-        _limit: limit
+        _start: start,
+        _end: end
       });
       
       // Aggiungi filtri se presenti
@@ -21,6 +24,10 @@ export const fetchCans = (filters = {}, page = 1, limit = 12) => {
       
       const response = await fetch(`${API_URL}/cans?${queryParams}`);
       const cans = await response.json();
+      
+      console.log(`✅ Redux fetchCans - Lattine caricate: ${cans.length}`);
+      
+      // json-server v1.0 potrebbe non restituire X-Total-Count
       const total = response.headers.get('X-Total-Count') || cans.length;
       
       dispatch({
@@ -36,7 +43,30 @@ export const fetchCans = (filters = {}, page = 1, limit = 12) => {
   };
 };
 
-// Fetch single can detail
+// Fetch TUTTE le lattine senza paginazione
+export const fetchAllCans = () => {
+  return async (dispatch) => {
+    dispatch({ type: 'FETCH_CANS_REQUEST' });
+    
+    try {
+      // Per json-server v1.0, usa un range molto alto
+      const response = await fetch(`${API_URL}/cans?_start=0&_end=1000`);
+      const cans = await response.json();
+      
+      dispatch({
+        type: 'FETCH_CANS_SUCCESS',
+        payload: { cans, total: cans.length }
+      });
+    } catch (error) {
+      dispatch({
+        type: 'FETCH_CANS_FAILURE',
+        payload: error.message
+      });
+    }
+  };
+};
+
+// Resto delle funzioni rimane uguale...
 export const fetchCanDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CAN_DETAIL_REQUEST' });
@@ -75,7 +105,7 @@ export const addCan = (canData) => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...canData,
-          id: Date.now(), // ID temporaneo
+          id: Date.now(),
           createdAt: new Date().toISOString()
         })
       });

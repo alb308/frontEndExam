@@ -1,13 +1,12 @@
 // src/pages/Promo.jsx
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchCans } from '../redux/actions/cansActions';
 import { Link } from 'react-router-dom';
 import './promo.css';
 
 function Promo() {
-  const dispatch = useDispatch();
-  const { cans } = useSelector(state => state.cans);
+  const [allCans, setAllCans] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   
   const [newsletterForm, setNewsletterForm] = useState({
     email: '',
@@ -25,10 +24,29 @@ function Promo() {
   const [submitMessage, setSubmitMessage] = useState('');
   const [promoCode, setPromoCode] = useState('');
 
+  // Carica tutte le lattine all'avvio
   useEffect(() => {
-    dispatch(fetchCans());
+    const fetchAllCans = async () => {
+      try {
+        setLoading(true);
+        // Usa la stessa strategia degli altri componenti
+        const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
+        const data = await response.json();
+        
+        console.log(`✅ Promo - Lattine caricate: ${data.length}`);
+        setAllCans(data);
+        setError(null);
+      } catch (err) {
+        console.error('❌ Errore nel caricamento promo:', err);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchAllCans();
     generatePromoCode();
-  }, [dispatch]);
+  }, []);
 
   const generatePromoCode = () => {
     const codes = ['MONSTER10', 'ENERGY15', 'BEAST20', 'POWER25', 'ULTRA30'];
@@ -139,8 +157,28 @@ function Promo() {
   };
 
   // Filtra le lattine limited edition e in promozione
-  const limitedEditionCans = cans.filter(can => can.limited || can.category === 'Limited Edition');
-  const promoCans = cans.filter(can => can.year >= 2023 || can.category === 'Zero Sugar');
+  const limitedEditionCans = allCans.filter(can => can.limited || can.category === 'Limited Edition' || can.category === 'Special Edition' || can.category === 'Reserve');
+  const promoCans = allCans.filter(can => can.year >= 2023 || can.category === 'Zero Sugar' || can.category === 'Ultra');
+
+  if (loading) return (
+    <div className="promo-page">
+      <div className="promo-container">
+        <div style={{ textAlign: 'center', color: '#00ff00', padding: '2rem' }}>
+          ⚡ Caricamento promozioni Monster Energy...
+        </div>
+      </div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="promo-page">
+      <div className="promo-container">
+        <div style={{ textAlign: 'center', color: '#ff0000', padding: '2rem' }}>
+          ❌ Errore: {error}
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="promo-page">
@@ -155,55 +193,67 @@ function Promo() {
             <section className="limited-edition-section">
               <h2>🌟 Edizioni Limitate</h2>
               <p>Lattine esclusive per veri collezionisti</p>
-              <div className="cans-grid">
-                {limitedEditionCans.slice(0, 6).map(can => (
-                  <div key={can.id} className="can-card limited">
-                    <div className="can-badge">Limited</div>
-                    <img 
-                      src={`/lattine/${can.img}`} 
-                      alt={can.nome}
-                      onError={(e) => {
-                        e.target.src = '/lattine/placeholder.jpg';
-                      }}
-                    />
-                    <h3>{can.nome}</h3>
-                    <p>{can.category} • {can.year}</p>
-                    <p className="can-country">{can.country}</p>
-                    <Link to={`/cans/${can.id}`} className="view-details">
-                      Dettagli
-                    </Link>
-                  </div>
-                ))}
-              </div>
+              {limitedEditionCans.length === 0 ? (
+                <div style={{ textAlign: 'center', color: '#ccc', padding: '2rem' }}>
+                  📭 Nessuna edizione limitata disponibile al momento
+                </div>
+              ) : (
+                <div className="cans-grid">
+                  {limitedEditionCans.slice(0, 6).map(can => (
+                    <div key={can.id} className="can-card limited">
+                      <div className="can-badge">Limited</div>
+                      <img 
+                        src={can.img} 
+                        alt={can.nome}
+                        onError={(e) => {
+                          e.target.src = '/lattine/placeholder.jpg';
+                        }}
+                      />
+                      <h3>{can.nome}</h3>
+                      <p>{can.category} • {can.year}</p>
+                      <p className="can-country">{can.country}</p>
+                      <Link to={`/cans/${can.id}`} className="view-details">
+                        Dettagli
+                      </Link>
+                    </div>
+                  ))}
+                </div>
+              )}
             </section>
             
             <section className="promo-deals-section">
               <h2>💰 Offerte Speciali</h2>
               <p>I migliori prodotti Monster Energy in promozione</p>
-              <div className="cans-grid">
-                {promoCans.slice(0, 6).map(can => (
-                  <div key={can.id} className="can-card promo">
-                    <div className="can-badge promo-badge">-15%</div>
-                    <img 
-                      src={`/lattine/${can.img}`} 
-                      alt={can.nome}
-                      onError={(e) => {
-                        e.target.src = '/lattine/placeholder.jpg';
-                      }}
-                    />
-                    <h3>{can.nome}</h3>
-                    <p>{can.category} • {can.year}</p>
-                    <p className="can-country">{can.country}</p>
-                    <div className="price-info">
-                      <span className="old-price">€2.50</span>
-                      <span className="new-price">€2.12</span>
+              {promoCans.length === 0 ? (
+                <div style={{ textAlign: 'center', color: '#ccc', padding: '2rem' }}>
+                  📭 Nessuna promozione disponibile al momento
+                </div>
+              ) : (
+                <div className="cans-grid">
+                  {promoCans.slice(0, 6).map(can => (
+                    <div key={can.id} className="can-card promo">
+                      <div className="can-badge promo-badge">-15%</div>
+                      <img 
+                        src={can.img} 
+                        alt={can.nome}
+                        onError={(e) => {
+                          e.target.src = '/lattine/placeholder.jpg';
+                        }}
+                      />
+                      <h3>{can.nome}</h3>
+                      <p>{can.category} • {can.year}</p>
+                      <p className="can-country">{can.country}</p>
+                      <div className="price-info">
+                        <span className="old-price">€2.50</span>
+                        <span className="new-price">€2.12</span>
+                      </div>
+                      <Link to={`/cans/${can.id}`} className="view-details">
+                        Dettagli
+                      </Link>
                     </div>
-                    <Link to={`/cans/${can.id}`} className="view-details">
-                      Dettagli
-                    </Link>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
+              )}
             </section>
           </div>
           

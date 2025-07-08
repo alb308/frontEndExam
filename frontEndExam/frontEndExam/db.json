@@ -1,8 +1,8 @@
 {
   "cans": [
     {
-      "id": 1,
-      "name": "Khaos Old",
+      "id": "1",
+      "nome": "Khaos Old",
       "img": "/lattine/KhaosOld.png",
       "flavor": "",
       "year": 2020,
@@ -16,8 +16,8 @@
       "notes": ""
     },
     {
-      "id": 2,
-      "name": "Killer Brew Loca Moca",
+      "id": "2",
+      "nome": "Killer Brew Loca Moca",
       "img": "/lattine/KillerBrewLocaMoca.png",
       "flavor": "",
       "year": 2020,
@@ -31,8 +31,8 @@
       "notes": ""
     },
     {
-      "id": 3,
-      "name": "Bad Apple",
+      "id": "3",
+      "nome": "Bad Apple",
       "img": "/lattine/BadApple.png",
       "flavor": "",
       "year": 2020,
@@ -46,8 +46,8 @@
       "notes": ""
     },
     {
-      "id": 4,
-      "name": "Khaos Mini",
+      "id": "4",
+      "nome": "Khaos Mini",
       "img": "/lattine/KhaosMini.png",
       "flavor": "",
       "year": 2020,
@@ -61,8 +61,8 @@
       "notes": ""
     },
     {
-      "id": 5,
-      "name": "Rehab Strawberry Lemonade",
+      "id": "5",
+      "nome": "Rehab Strawberry Lemonade",
       "img": "/lattine/RehabStrawberryLemonade.png",
       "flavor": "",
       "year": 2020,
@@ -76,8 +76,8 @@
       "notes": ""
     },
     {
-      "id": 6,
-      "name": "Classic",
+      "id": "6",
+      "nome": "Classic",
       "img": "/lattine/Classic.png",
       "flavor": "",
       "year": 2018,
@@ -91,8 +91,8 @@
       "notes": ""
     },
     {
-      "id": 7,
-      "name": "Java French Vanilla",
+      "id": "7",
+      "nome": "Java French Vanilla",
       "img": "/lattine/JavaFrenchVanilla.png",
       "flavor": "",
       "year": 2020,
@@ -106,8 +106,8 @@
       "notes": ""
     },
     {
-      "id": 8,
-      "name": "Punch MIXXD New",
+      "id": "8",
+      "nome": "Punch MIXXD New",
       "img": "/lattine/PunchMIXXDNew.png",
       "flavor": "",
       "year": 2020,
@@ -121,8 +121,8 @@
       "notes": ""
     },
     {
-      "id": 9,
-      "name": "Hamilton New",
+      "id": "9",
+      "nome": "Hamilton New",
       "img": "/lattine/HamiltonNew.png",
       "flavor": "",
       "year": 2021,
@@ -136,8 +136,8 @@
       "notes": ""
     },
     {
-      "id": 10,
-      "name": "Ultra Violet",
+      "id": "10",
+      "nome": "Ultra Violet",
       "img": "/lattine/UltraViolet.png",
       "flavor": "",
       "year": 2020,
@@ -151,8 +151,8 @@
       "notes": ""
     },
     {
-      "id": 11,
-      "name": "Ultra Paradise",
+      "id": "11",
+      "nome": "Ultra Paradise",
       "img": "/lattine/UltraParadise.png",
       "flavor": "",
       "year": 2020,
@@ -166,8 +166,8 @@
       "notes": ""
     },
     {
-      "id": 12,
-      "name": "Juiced Aussie Lemonade",
+      "id": "12",
+      "nome": "Juiced Aussie Lemonade",
       "img": "/lattine/JuicedAussieLemonade.png",
       "flavor": "",
       "year": 2020,
@@ -181,8 +181,8 @@
       "notes": ""
     },
     {
-      "id": 13,
-      "name": "Mango Loco Mini",
+      "id": "13",
+      "nome": "Mango Loco Mini",
       "img": "/lattine/MangoLocoMini.png",
       "flavor": "",
       "year": 2020,
@@ -196,8 +196,8 @@
       "notes": ""
     },
     {
-      "id": 14,
-      "name": "Super Fuel Sub Zero",
+      "id": "14",
+      "nome": "Super Fuel Sub Zero",
       "img": "/lattine/SuperFuelSubZero.png",
       "flavor": "",
       "year": 2020,
@@ -211,8 +211,8 @@
       "notes": ""
     },
     {
-      "id": 15,
-      "name": "Import",
+      "id": "15",
+      "nome": "Import",
       "img": "/lattine/Import.png",
       "flavor": "",
       "year": 2020,
@@ -226,8 +226,8 @@
       "notes": ""
     },
     {
-      "id": 16,
-      "name": "Ultra Vice Guava",
+      "id": "16",
+      "nome": "Ultra Vice Guava",
       "img": "/lattine/UltraViceGuava.png",
       "flavor": "",
       "year": 2020,
@@ -241,8 +241,8 @@
       "notes": ""
     },
     {
-      "id": 17,
-      "name": "Peachy Keen",
+      "id": "17",
+      "nome": "Peachy Keen",
       "img": "/lattine/PeachyKeen.png",
       "flavor": "",
       "year": 2020,
@@ -256,8 +256,8 @@
       "notes": ""
     },
     {
-      "id": 18,
-      "name": "Dragon Chinese Tea",
+      "id": "18",
+      "nome": "Dragon Chinese Tea",
       "img": "/lattine/DragonChineseTea.png",
       "flavor": "",
       "year": 2020,
@@ -271,8 +271,8 @@
       "notes": ""
     },
     {
-      "id": 19,
-      "name": "Mule",
+      "id": "19",
+      "nome": "Mule",
       "img": "/lattine/Mule.png",
       "flavor": "",
       "year": 2020,
@@ -286,8 +286,8 @@
       "notes": ""
     },
     {
-      "id": 20,
-      "name": "Assault",
+      "id": "20",
+      "nome": "Assault",
       "img": "/lattine/Assault.png",
       "flavor": "",
       "year": 2020,
@@ -301,8 +301,8 @@
       "notes": ""
     },
     {
-      "id": 21,
-      "name": "Java Mean Bean",
+      "id": "21",
+      "nome": "Java Mean Bean",
       "img": "/lattine/JavaMeanBean.png",
       "flavor": "",
       "year": 2020,
@@ -316,8 +316,8 @@
       "notes": ""
     },
     {
-      "id": 22,
-      "name": "Rio Punch",
+      "id": "22",
+      "nome": "Rio Punch",
       "img": "/lattine/RioPunch.png",
       "flavor": "",
       "year": 2020,
@@ -331,8 +331,8 @@
       "notes": ""
     },
     {
-      "id": 23,
-      "name": "Classic Zero Sugar Old",
+      "id": "23",
+      "nome": "Classic Zero Sugar Old",
       "img": "/lattine/ClassicZeroSugarOld.png",
       "flavor": "",
       "year": 2020,
@@ -346,8 +346,8 @@
       "notes": ""
     },
     {
-      "id": 24,
-      "name": "Ultra Rosa",
+      "id": "24",
+      "nome": "Ultra Rosa",
       "img": "/lattine/UltraRosa.png",
       "flavor": "",
       "year": 2020,
@@ -361,8 +361,8 @@
       "notes": ""
     },
     {
-      "id": 25,
-      "name": "Ultra Fantasy Ruby Red",
+      "id": "25",
+      "nome": "Ultra Fantasy Ruby Red",
       "img": "/lattine/UltraFantasyRubyRed.png",
       "flavor": "",
       "year": 2020,
@@ -376,8 +376,8 @@
       "notes": ""
     },
     {
-      "id": 26,
-      "name": "Juiced Ripper New",
+      "id": "26",
+      "nome": "Juiced Ripper New",
       "img": "/lattine/JuicedRipperNew.png",
       "flavor": "",
       "year": 2020,
@@ -391,8 +391,8 @@
       "notes": ""
     },
     {
-      "id": 27,
-      "name": "Reserve Watermelon",
+      "id": "27",
+      "nome": "Reserve Watermelon",
       "img": "/lattine/ReserveWatermelon.png",
       "flavor": "",
       "year": 2020,
@@ -406,8 +406,8 @@
       "notes": ""
     },
     {
-      "id": 28,
-      "name": "Viking Berry",
+      "id": "28",
+      "nome": "Viking Berry",
       "img": "/lattine/VikingBerry.png",
       "flavor": "",
       "year": 2020,
@@ -421,8 +421,8 @@
       "notes": ""
     },
     {
-      "id": 29,
-      "name": "Hydro Sport Classic",
+      "id": "29",
+      "nome": "Hydro Sport Classic",
       "img": "/lattine/HydroSportClassic.png",
       "flavor": "",
       "year": 2020,
@@ -436,8 +436,8 @@
       "notes": ""
     },
     {
-      "id": 30,
-      "name": "Reserve Peaches N creme",
+      "id": "30",
+      "nome": "Reserve Peaches N creme",
       "img": "/lattine/ReservePeachesNcreme.png",
       "flavor": "",
       "year": 2020,
@@ -451,8 +451,8 @@
       "notes": ""
     },
     {
-      "id": 31,
-      "name": "Rehab Tea Peach Old",
+      "id": "31",
+      "nome": "Rehab Tea Peach Old",
       "img": "/lattine/RehabTeaPeachOld.png",
       "flavor": "",
       "year": 2020,
@@ -466,8 +466,8 @@
       "notes": ""
     },
     {
-      "id": 32,
-      "name": "Nitro Super Dry",
+      "id": "32",
+      "nome": "Nitro Super Dry",
       "img": "/lattine/NitroSuperDry.png",
       "flavor": "",
       "year": 2020,
@@ -481,8 +481,8 @@
       "notes": ""
     },
     {
-      "id": 33,
-      "name": "Dragon Ice Tea Lemon",
+      "id": "33",
+      "nome": "Dragon Ice Tea Lemon",
       "img": "/lattine/DragonIceTeaLemon.png",
       "flavor": "",
       "year": 2020,
@@ -496,8 +496,8 @@
       "notes": ""
     },
     {
-      "id": 34,
-      "name": "JavaLoca Moca",
+      "id": "34",
+      "nome": "JavaLoca Moca",
       "img": "/lattine/JavaLocaMoca.png",
       "flavor": "",
       "year": 2020,
@@ -511,8 +511,8 @@
       "notes": ""
     },
     {
-      "id": 35,
-      "name": "Pipeline Punch",
+      "id": "35",
+      "nome": "Pipeline Punch",
       "img": "/lattine/PipelinePunch.png",
       "flavor": "",
       "year": 2020,
@@ -526,8 +526,8 @@
       "notes": ""
     },
     {
-      "id": 36,
-      "name": "Classic ZeroSugarNew",
+      "id": "36",
+      "nome": "Classic ZeroSugarNew",
       "img": "/lattine/ClassicZeroSugarNew.png",
       "flavor": "",
       "year": 2020,
@@ -541,8 +541,8 @@
       "notes": ""
     },
     {
-      "id": 37,
-      "name": "Ultra Watermelon",
+      "id": "37",
+      "nome": "Ultra Watermelon",
       "img": "/lattine/UltraWatermelon.png",
       "flavor": "",
       "year": 2020,
@@ -556,8 +556,8 @@
       "notes": ""
     },
     {
-      "id": 38,
-      "name": "Ultra White",
+      "id": "38",
+      "nome": "Ultra White",
       "img": "/lattine/UltraWhite.png",
       "flavor": "",
       "year": 2020,
@@ -571,8 +571,8 @@
       "notes": ""
     },
     {
-      "id": 39,
-      "name": "Juiced Ripper Old",
+      "id": "39",
+      "nome": "Juiced Ripper Old",
       "img": "/lattine/JuicedRipperOld.png",
       "flavor": "",
       "year": 2020,
@@ -586,8 +586,8 @@
       "notes": ""
     },
     {
-      "id": 40,
-      "name": "Reserve Kiwi StrawBerry",
+      "id": "40",
+      "nome": "Reserve Kiwi StrawBerry",
       "img": "/lattine/ReserveKiwiStrawBerry.png",
       "flavor": "",
       "year": 2020,
@@ -601,8 +601,8 @@
       "notes": ""
     },
     {
-      "id": 41,
-      "name": "Ultra Blue Hawaii",
+      "id": "41",
+      "nome": "Ultra Blue Hawaii",
       "img": "/lattine/UltraBlueHawaii.png",
       "flavor": "",
       "year": 2020,
@@ -616,8 +616,8 @@
       "notes": ""
     },
     {
-      "id": 42,
-      "name": "Hydro Sport Blue",
+      "id": "42",
+      "nome": "Hydro Sport Blue",
       "img": "/lattine/HydroSportBlue.png",
       "flavor": "",
       "year": 2020,
@@ -631,8 +631,8 @@
       "notes": ""
     },
     {
-      "id": 43,
-      "name": "Khaotic",
+      "id": "43",
+      "nome": "Khaotic",
       "img": "/lattine/Khaotic.png",
       "flavor": "",
       "year": 2020,
@@ -646,8 +646,8 @@
       "notes": ""
     },
     {
-      "id": 44,
-      "name": "Rehab Tea Peach New",
+      "id": "44",
+      "nome": "Rehab Tea Peach New",
       "img": "/lattine/RehabTeaPeachNew.png",
       "flavor": "",
       "year": 2020,
@@ -661,8 +661,8 @@
       "notes": ""
     },
     {
-      "id": 45,
-      "name": "Nitro Cosmic Peach",
+      "id": "45",
+      "nome": "Nitro Cosmic Peach",
       "img": "/lattine/NitroCosmicPeach.png",
       "flavor": "",
       "year": 2020,
@@ -676,8 +676,8 @@
       "notes": ""
     },
     {
-      "id": 46,
-      "name": "Dragon Ice Tea Peach",
+      "id": "46",
+      "nome": "Dragon Ice Tea Peach",
       "img": "/lattine/DragonIceTeaPeach.png",
       "flavor": "",
       "year": 2020,
@@ -691,8 +691,8 @@
       "notes": ""
     },
     {
-      "id": 47,
-      "name": "Java Salted Caramel",
+      "id": "47",
+      "nome": "Java Salted Caramel",
       "img": "/lattine/JavaSaltedCaramel.png",
       "flavor": "",
       "year": 2020,
@@ -706,8 +706,8 @@
       "notes": ""
     },
     {
-      "id": 48,
-      "name": "Valentino Rossi",
+      "id": "48",
+      "nome": "Valentino Rossi",
       "img": "/lattine/ValentinoRossi.png",
       "flavor": "",
       "year": 2020,
@@ -721,8 +721,8 @@
       "notes": ""
     },
     {
-      "id": 49,
-      "name": "Ultra Citron",
+      "id": "49",
+      "nome": "Ultra Citron",
       "img": "/lattine/UltraCitron.png",
       "flavor": "",
       "year": 2020,
@@ -736,8 +736,8 @@
       "notes": ""
     },
     {
-      "id": 50,
-      "name": "Ultra Golden Pineapple",
+      "id": "50",
+      "nome": "Ultra Golden Pineapple",
       "img": "/lattine/UltraGoldenPineapple.png",
       "flavor": "",
       "year": 2020,
@@ -751,8 +751,8 @@
       "notes": ""
     },
     {
-      "id": 51,
-      "name": "Ultra White Mini",
+      "id": "51",
+      "nome": "Ultra White Mini",
       "img": "/lattine/UltraWhiteMini.png",
       "flavor": "",
       "year": 2020,
@@ -766,8 +766,8 @@
       "notes": ""
     },
     {
-      "id": 52,
-      "name": "Ultra Fiesta Mango",
+      "id": "52",
+      "nome": "Ultra Fiesta Mango",
       "img": "/lattine/UltraFiestaMango.png",
       "flavor": "",
       "year": 2020,
@@ -781,8 +781,8 @@
       "notes": ""
     },
     {
-      "id": 53,
-      "name": "Reserve White Pineapple",
+      "id": "53",
+      "nome": "Reserve White Pineapple",
       "img": "/lattine/ReserveWhitePineapple.png",
       "flavor": "",
       "year": 2020,
@@ -796,8 +796,8 @@
       "notes": ""
     },
     {
-      "id": 54,
-      "name": "Killer Brew Mean Bean",
+      "id": "54",
+      "nome": "Killer Brew Mean Bean",
       "img": "/lattine/KillerBrewMeanBean.png",
       "flavor": "",
       "year": 2020,
@@ -811,8 +811,8 @@
       "notes": ""
     },
     {
-      "id": 55,
-      "name": "Classica mini",
+      "id": "55",
+      "nome": "Classica mini",
       "img": "/lattine/ClassicMini.png",
       "flavor": "",
       "year": 2020,
@@ -826,8 +826,8 @@
       "notes": ""
     },
     {
-      "id": 56,
-      "name": "Monarch",
+      "id": "56",
+      "nome": "Monarch",
       "img": "/lattine/Monach.png",
       "flavor": "",
       "year": 2020,
@@ -841,8 +841,8 @@
       "notes": ""
     },
     {
-      "id": 57,
-      "name": "Rehab Wild Berry Tea",
+      "id": "57",
+      "nome": "Rehab Wild Berry Tea",
       "img": "/lattine/RehabWildBerryTea.png",
       "flavor": "",
       "year": 2020,
@@ -856,8 +856,8 @@
       "notes": ""
     },
     {
-      "id": 58,
-      "name": "Green Tea",
+      "id": "58",
+      "nome": "Green Tea",
       "img": "/lattine/GreenTea.png",
       "flavor": "",
       "year": 2020,
@@ -871,8 +871,8 @@
       "notes": ""
     },
     {
-      "id": 59,
-      "name": "Java Irish Cream",
+      "id": "59",
+      "nome": "Java Irish Cream",
       "img": "/lattine/JavaIrishCream.png",
       "flavor": "",
       "year": 2020,
@@ -886,8 +886,8 @@
       "notes": ""
     },
     {
-      "id": 60,
-      "name": "Punch MIXXD vecchia edizione",
+      "id": "60",
+      "nome": "Punch MIXXD vecchia edizione",
       "img": "/lattine/PunchMIXXDOld.png",
       "flavor": "",
       "year": 2020,
@@ -901,8 +901,8 @@
       "notes": ""
     },
     {
-      "id": 61,
-      "name": "Hamilton Vecchia Edizione(buonissima)",
+      "id": "61",
+      "nome": "Hamilton Vecchia Edizione(buonissima)",
       "img": "/lattine/HamiltonOld.png",
       "flavor": "",
       "year": 2020,
@@ -916,8 +916,8 @@
       "notes": ""
     },
     {
-      "id": 62,
-      "name": "Ultra Blue",
+      "id": "62",
+      "nome": "Ultra Blue",
       "img": "/lattine/UltraBlue.png",
       "flavor": "",
       "year": 2020,
@@ -931,8 +931,8 @@
       "notes": ""
     },
     {
-      "id": 63,
-      "name": "Ultra Red",
+      "id": "63",
+      "nome": "Ultra Red",
       "img": "/lattine/UltraRed.png",
       "flavor": "",
       "year": 2020,
@@ -946,8 +946,8 @@
       "notes": ""
     },
     {
-      "id": 64,
-      "name": "Ultra Black",
+      "id": "64",
+      "nome": "Ultra Black",
       "img": "/lattine/UltraBlack.png",
       "flavor": "",
       "year": 2020,
@@ -961,8 +961,8 @@
       "notes": ""
     },
     {
-      "id": 65,
-      "name": "Mango Loco",
+      "id": "65",
+      "nome": "Mango Loco",
       "img": "/lattine/MangoLoco.png",
       "flavor": "",
       "year": 2020,
@@ -976,8 +976,8 @@
       "notes": ""
     },
     {
-      "id": 66,
-      "name": "Super Fuel Mean Green",
+      "id": "66",
+      "nome": "Super Fuel Mean Green",
       "img": "/lattine/SuperFuelMeanGreen.png",
       "flavor": "",
       "year": 2020,
@@ -993,13 +993,64 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@monster.it",
       "password": "admin123",
       "name": "Admin",
       "role": "admin"
+    },
+    {
+      "id": "a989",
+      "email": "bjkbj@gmail.com",
+      "password": "djxwmipad",
+      "name": "lkjnj",
+      "role": "user",
+      "createdAt": "2025-07-08T18:04:33.143Z"
+    },
+    {
+      "id": "deca",
+      "email": "DQWDWQD@GMAIL.COM",
+      "password": "WADWQD",
+      "name": "xaZ",
+      "role": "user",
+      "createdAt": "2025-07-08T18:10:36.448Z"
     }
   ],
-  "comments": []
+  "comments": [
+    {
+      "id": "1ccb",
+      "canId": 2,
+      "userId": "a989",
+      "userName": "lkjnj",
+      "text": "onxcsoa",
+      "createdAt": "2025-07-08T18:04:39.153Z"
+    },
+    {
+      "id": "ee2a",
+      "canId": 6,
+      "userId": "deca",
+      "userName": "xaZ",
+      "text": " JKK",
+      "createdAt": "2025-07-08T18:10:50.752Z"
+    }
+  ],
+  "ratings": [
+    {
+      "id": "d362",
+      "canId": 25,
+      "userId": "a989",
+      "rating": 5,
+      "createdAt": "2025-07-08T18:05:04.900Z"
+    },
+    {
+      "id": "19fc",
+      "canId": 6,
+      "userId": "deca",
+      "rating": 5,
+      "createdAt": "2025-07-08T18:10:46.053Z"
+    }
+  ],
+  "reviews": [],
+  "contacts": [],
+  "newsletter": []
 }
-
