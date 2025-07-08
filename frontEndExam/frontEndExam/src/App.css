@@ -1,0 +1,30 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background-color: black; /* facoltativo, per coerenza */
+  height: 100%;
+  width: 100%;
+}
+
+.app-layout {
+  display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main-content {
+  margin-left: 70px;
+  padding: 2rem;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.open ~ .main-content {
+  margin-left: 220px;
+}
