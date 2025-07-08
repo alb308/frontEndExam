@@ -28,6 +28,7 @@ function Navbar() {
         <li><Link to="/home">Home</Link></li>
         <li><Link to="/prodotti">Prodotti</Link></li>
         <li><Link to="/promo">Promozioni</Link></li>
+        <li><Link to="/recensioni">Recensioni</Link></li>
         {!isAuthenticated && (
           <>
             <li><Link to="/login">Accedi</Link></li>

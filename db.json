@@ -7,7 +7,7 @@
       "year": 2002,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/Classic.png",
+      "img": "Classic.png",
       "limited": false
     },
     {
@@ -17,7 +17,7 @@
       "year": 2012,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/UltraWhite.png",
+      "img": "UltraWhite.png",
       "limited": false
     },
     {
@@ -27,7 +27,7 @@
       "year": 2015,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/PipelinePunch.png",
+      "img": "PipelinePunch.png",
       "limited": false
     },
     {
@@ -37,7 +37,7 @@
       "year": 2018,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/MangoLoco.png",
+      "img": "MangoLoco.png",
       "limited": false
     },
     {
@@ -47,7 +47,7 @@
       "year": 2019,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/UltraParadise.png",
+      "img": "UltraParadise.png",
       "limited": false
     },
     {
@@ -57,7 +57,7 @@
       "year": 2020,
       "country": "Italy",
       "size": "500ml",
-      "img": "/lattine/ValentinoRossi.png",
+      "img": "ValentinoRossi.png",
       "limited": true
     },
     {
@@ -67,7 +67,7 @@
       "year": 2021,
       "country": "UK",
       "size": "500ml",
-      "img": "/lattine/HamiltonNew.png",
+      "img": "HamiltonNew.png",
       "limited": true
     },
     {
@@ -77,7 +77,7 @@
       "year": 2020,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/UltraViolet.png",
+      "img": "UltraViolet.png",
       "limited": false
     },
     {
@@ -87,7 +87,7 @@
       "year": 2005,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/Assault.png",
+      "img": "Assault.png",
       "limited": false
     },
     {
@@ -97,7 +97,7 @@
       "year": 2006,
       "country": "USA",
       "size": "500ml",
-      "img": "/lattine/KhaosOld.png",
+      "img": "KhaosOld.png",
       "limited": false
     }
   ],

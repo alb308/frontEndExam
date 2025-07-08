@@ -3,15 +3,16 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "./redux/actions/authActions";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
 import AdminPanel from "./pages/AdminPanel";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import CanDetailPage from './pages/CanDetailPage';
 import AuthPage from "./pages/AuthPage";
-import TestMeteo from "./pages/TestMeteo";
 import Prodotti from "./pages/Prodotti";
+import Promo from "./pages/Promo";
+import Recensioni from "./pages/Recensioni";
+import NotFound from "./pages/NotFound";
+import ProtectedRoute from "./components/ProtectedRoute";
 import "./App.css";
 
 function Layout() {
@@ -31,9 +32,16 @@ function Layout() {
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<AuthPage />} />
         <Route path="/register" element={<AuthPage />} />
-        <Route path="/admin" element={<AdminPanel />} />
+        <Route path="/admin" element={
+          <ProtectedRoute requiredRole="admin">
+            <AdminPanel />
+          </ProtectedRoute>
+        } />
         <Route path="/prodotti" element={<Prodotti />} />
+        <Route path="/promo" element={<Promo />} />
+        <Route path="/recensioni" element={<Recensioni />} />
         <Route path="/cans/:id" element={<CanDetailPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
