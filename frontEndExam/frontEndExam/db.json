@@ -7,7 +7,7 @@
       "flavor": "",
       "year": 2020,
       "description": "",
-      "limited": false,
+      "limited": true,
       "country": "USA",
       "size": "500ml",
       "category": "Juice",
@@ -1014,6 +1014,14 @@
       "name": "xaZ",
       "role": "user",
       "createdAt": "2025-07-08T18:10:36.448Z"
+    },
+    {
+      "id": "02eb",
+      "email": "albertogiunta2004@gmail.com",
+      "password": "dwqdhay7t68iyauopèQ",
+      "name": "albertogiunta2004@gmail.com",
+      "role": "user",
+      "createdAt": "2025-07-09T01:49:08.026Z"
     }
   ],
   "comments": [
