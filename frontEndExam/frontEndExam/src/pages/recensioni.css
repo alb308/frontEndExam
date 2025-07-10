@@ -21,7 +21,7 @@
 
 .subtitle {
   text-align: center;
-  color: #ccc;
+  color: #cccccc;
   margin-bottom: 2rem;
   font-size: 1.1rem;
 }
@@ -81,13 +81,20 @@
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid #333;
+  background-color: rgba(0, 0, 0, 0.8); /* Era 0.1, ora 0.8 = 80% opaco */
+  border: 1px solid #333; /* Era #f4f4f4 bianco, ora grigio scuro */
   border-radius: 6px;
   padding: 0.8rem;
-  color: #fff;
+  color: #ffffff;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  background-color: rgba(0, 0, 0, 0.9); /* Ancora più scuro quando focus */
+  border-color: #00ff00;
 }
 
 .form-group input:focus,
@@ -318,5 +325,6 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
+  
   
 }
