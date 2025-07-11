@@ -6,9 +6,8 @@ import CaroselloLattine from "../components/CaroselloLattine";
 function Home() {
   return (
     <div className="home-container">
-      <h1>La mia collezzione di Monster :D</h1>
-      <CaroselloLattine />
       <Timer />
+      <CaroselloLattine />
     </div>
   );
 }

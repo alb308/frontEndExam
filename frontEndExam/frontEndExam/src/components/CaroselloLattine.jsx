@@ -53,7 +53,6 @@ function CaroselloLattine() {
     <div className="carosello-container">
       <div className="carousel-header">
         <h2 className="carousel-title">
-          <span className="title-icon">🥤</span>
           <span className="title-text">LA MIA COLLEZIONE</span>
           <span className="title-highlight">MONSTER ENERGY</span>
         </h2>
