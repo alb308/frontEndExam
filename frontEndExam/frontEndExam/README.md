@@ -1,4 +1,4 @@
-# Monster Energy Collection 🥤⚡
+# Monster Energy Collection 
 
 Una web app React per gestire e visualizzare la mia personale collezione di monster
 
@@ -74,5 +74,3 @@ monster-energy-collection/
 - Protezione route basata su ruoli
 - Validazione input lato client
 
-
-**Nota**: Questo progetto è stato sviluppato a scopo educativo e non è affiliato con Monster Energy Company.
