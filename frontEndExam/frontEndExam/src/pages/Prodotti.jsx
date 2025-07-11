@@ -1,4 +1,3 @@
-// src/pages/Prodotti.jsx
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Prodotti.css';
@@ -18,12 +17,10 @@ function Prodotti() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
 
-  // Carica tutte le lattine all'avvio
   useEffect(() => {
     const fetchAllCans = async () => {
       try {
         setLoading(true);
-        // Usa la stessa strategia del carosello per json-server v1.0
         const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
         const data = await response.json();
         
@@ -41,7 +38,6 @@ function Prodotti() {
     fetchAllCans();
   }, []);
 
-  // Categorie, anni e paesi unici dalle lattine
   const categories = [...new Set(allCans.map(can => can.category))].filter(Boolean);
   const years = [...new Set(allCans.map(can => can.year))].filter(Boolean).sort((a, b) => b - a);
   const countries = [...new Set(allCans.map(can => can.country))].filter(Boolean);
@@ -52,7 +48,7 @@ function Prodotti() {
       ...prev,
       [name]: value
     }));
-    setCurrentPage(1); // Reset alla prima pagina quando cambiano i filtri
+    setCurrentPage(1); 
   };
 
   const applyFilters = () => {
@@ -70,7 +66,6 @@ function Prodotti() {
     setCurrentPage(1);
   };
 
-  // Filtro locale per i risultati
   const filteredCans = allCans.filter(can => {
     const matchCategory = !localFilters.category || can.category === localFilters.category;
     const matchYear = !localFilters.year || can.year?.toString() === localFilters.year;
@@ -81,7 +76,7 @@ function Prodotti() {
     return matchCategory && matchYear && matchCountry && matchSearch;
   });
 
-  // Paginazione
+  
   const totalPages = Math.ceil(filteredCans.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCans = filteredCans.slice(startIndex, startIndex + itemsPerPage);
@@ -105,7 +100,6 @@ function Prodotti() {
     <div className="prodotti-container">
       <h1>Collezione Completa</h1>
       
-      {/* Sezione Filtri */}
       <div className="filters-section">
         <h3>Filtra la collezione</h3>
         <div className="filters-grid">
@@ -173,7 +167,6 @@ function Prodotti() {
         </div>
       </div>
 
-      {/* Risultati */}
       <div className="results-info">
         <p>
           Trovate {filteredCans.length} lattine 
@@ -181,7 +174,6 @@ function Prodotti() {
         </p>
       </div>
 
-      {/* Griglia prodotti */}
       <div className="prodotti-grid">
         {paginatedCans.map(can => (
           <Link to={`/cans/${can.id}`} key={can.id} className="prodotto-card">
@@ -200,7 +192,6 @@ function Prodotti() {
         ))}
       </div>
 
-      {/* Paginazione */}
       {totalPages > 1 && (
         <div className="pagination">
           <button 

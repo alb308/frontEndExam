@@ -1,4 +1,3 @@
-// src/pages/AdminPanel.jsx
 import React, { useState, useEffect } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -10,7 +9,7 @@ function AdminPanel() {
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   
-  // State del form - più semplice
+
   const [nome, setNome] = useState('');
   const [category, setCategory] = useState('');
   const [year, setYear] = useState(2025);
@@ -18,7 +17,7 @@ function AdminPanel() {
   const [limited, setLimited] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-  // Carica le lattine
+
   useEffect(() => {
     loadCans();
   }, []);
@@ -35,12 +34,11 @@ function AdminPanel() {
     }
   }
 
-  // Controllo accesso
-  if (!isAuthenticated || user?.role !== 'admin') {
+if (!isAuthenticated || user?.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
-  // Salva lattina
+
   async function saveCan() {
     if (!nome || !category || !img) {
       setMessage('Compila i campi obbligatori');
@@ -68,7 +66,6 @@ function AdminPanel() {
     }
   }
 
-  // Modifica lattina
   function editCan(can) {
     setNome(can.nome);
     setCategory(can.category);
@@ -78,7 +75,6 @@ function AdminPanel() {
     setEditingId(can.id);
   }
 
-  // Elimina lattina
   async function deleteCan(id) {
     if (!confirm('Eliminare?')) return;
 
@@ -91,7 +87,6 @@ function AdminPanel() {
     }
   }
 
-  // Pulisci form
   function clearForm() {
     setNome('');
     setCategory('');

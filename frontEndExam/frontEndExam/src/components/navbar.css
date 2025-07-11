@@ -1,11 +1,11 @@
-/* src/components/navbar.css - VERSIONE UMANA 👥 */
+/* src/components/navbar.css - FILE COMPLETO CORRETTO */
 
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 80px; /* Più largo di base */
+  width: 80px; 
   background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
   color: white;
   overflow: hidden;
@@ -17,7 +17,7 @@
 }
 
 .sidebar.open {
-  width: 250px; /* Molto più largo quando aperto */
+  width: 250px;
 }
 
 .sidebar-header {
@@ -67,7 +67,6 @@
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
 }
 
-/* Icone prima del testo */
 .sidebar-menu li a::before,
 .sidebar-menu li span::before {
   content: '';
@@ -76,10 +75,9 @@
   height: 20px;
   margin-right: 12px;
   background-size: contain;
-  flex-shrink: 0; /* Non si rimpicciolisce */
+  flex-shrink: 0; 
 }
 
-/* Icone specifiche */
 .sidebar-menu li:nth-child(1) a::before { content: '🏠'; }
 .sidebar-menu li:nth-child(2) a::before { content: '🥤'; }
 .sidebar-menu li:nth-child(3) a::before { content: '🎯'; }
@@ -89,7 +87,6 @@
 .sidebar-menu li:nth-child(7) a::before { content: '🛠️'; }
 .sidebar-menu li:nth-child(8) span::before { content: '🚪'; }
 
-/* Testo nascosto quando chiusa */
 .sidebar:not(.open) .sidebar-menu li a span,
 .sidebar:not(.open) .sidebar-menu li span span {
   opacity: 0;
@@ -105,7 +102,6 @@
   transition: opacity 0.3s ease 0.1s;
 }
 
-/* Info utente */
 .user-info {
   position: absolute;
   bottom: 1rem;
@@ -143,26 +139,99 @@
   overflow: hidden;
 }
 
-/* Layout principale */
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: #00ff00;
+}
+
+.user-role {
+  font-size: 0.7rem;
+  color: #999;
+  text-transform: uppercase;
+}
+
+/* Pulsante hamburger mobile */
+.mobile-menu-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  background: #00ff00;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #000;
+  box-shadow: 0 2px 10px rgba(0, 255, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-toggle:hover {
+  background: #00cc00;
+  transform: scale(1.05);
+}
+
+/* Overlay mobile */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+  display: block;
+  opacity: 1;
+}
+
+/* Main content */
 .main-content {
-  margin-left: 80px; /* Stesso della width sidebar */
+  margin-left: 80px; 
   transition: margin-left 0.3s ease;
   min-height: 100vh;
 }
 
-/* Quando sidebar è aperta */
 body:has(.sidebar.open) .main-content {
   margin-left: 250px;
 }
 
-/* Responsive */
+/* MEDIA QUERIES */
+
+/* Tablet */
 @media (max-width: 768px) {
   .sidebar {
     width: 70px;
+    background: rgba(26, 26, 26, 0.98);
   }
   
   .sidebar.open {
-    width: 200px;
+    width: 240px;
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.5);
+  }
+  
+  .sidebar-menu li a,
+  .sidebar-menu li span {
+    padding: 0.8rem 1rem;
+  }
+  
+  .sidebar-menu li a::before,
+  .sidebar-menu li span::before {
+    font-size: 1.2rem;
+    margin-right: 10px;
   }
   
   .main-content {
@@ -170,18 +239,100 @@ body:has(.sidebar.open) .main-content {
   }
   
   body:has(.sidebar.open) .main-content {
-    margin-left: 200px;
+    margin-left: 70px; /* Non spostare il contenuto su tablet */
+  }
+  
+  /* Mostra pulsante hamburger */
+  .mobile-menu-toggle {
+    display: block;
   }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
+  .sidebar {
+    width: 0;
+    transform: translateX(-100%);
+    transition: all 0.3s ease;
+  }
+  
   .sidebar.open {
-    width: 100%;
+    width: 75%;
+    max-width: 280px;
+    transform: translateX(0);
     background: rgba(0, 0, 0, 0.95);
+  }
+  
+  .sidebar-header {
+    padding: 1rem;
+  }
+  
+  .sidebar-logo {
+    height: 35px;
+  }
+  
+  .sidebar-menu li a,
+  .sidebar-menu li span {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .main-content {
+    margin-left: 0;
   }
   
   body:has(.sidebar.open) .main-content {
     margin-left: 0;
-    filter: blur(2px);
+  }
+  
+  /* Pulsante hamburger sempre visibile su mobile */
+  .mobile-menu-toggle {
+    display: block;
+    opacity: 1;
+  }
+  
+  .sidebar.open ~ .mobile-menu-toggle {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* User info più compatta */
+  .user-info {
+    padding: 0.8rem;
+    font-size: 0.8rem;
+  }
+  
+  .user-info img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Fix per pagine specifiche su mobile */
+@media (max-width: 768px) {
+  /* Regola generale per tutte le pagine */
+  .prodotti-container,
+  .promo-page,
+  .recensioni-page,
+  .contatti-page,
+  .admin-panel,
+  .home-container,
+  .fullscreen-detail {
+    margin-left: 70px !important;
+    transition: margin-left 0.3s ease;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Su mobile piccoli nessun margine */
+  .prodotti-container,
+  .promo-page,
+  .recensioni-page,
+  .contatti-page,
+  .admin-panel,
+  .home-container,
+  .fullscreen-detail {
+    margin-left: 0 !important;
+    padding-top: 4rem !important; /* Spazio per hamburger button */
   }
 }

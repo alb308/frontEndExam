@@ -1,4 +1,3 @@
-// src/components/CaroselloLattine.jsx - VERSIONE ULTRA FIGA 🔥
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -39,18 +38,18 @@ function CaroselloLattine() {
   speed: 500,
   slidesToShow: Math.min(6, cans.length),
   slidesToScroll: 3,
-  autoplay: true,              // ✅ Autoplay attivo
-  autoplaySpeed: 3000,         // ✅ Cambia ogni 3 secondi
-  pauseOnHover: true,          // ✅ Si ferma quando passi il mouse
-  pauseOnFocus: true,          // ✅ Si ferma quando clicchi
-  arrows: true,                // ✅ Frecce visibili
+  autoplay: true,               
+  autoplaySpeed: 3000,         
+  pauseOnHover: true,           
+  pauseOnFocus: true,           
+  arrows: true,                 
   responsive: [
     {
       breakpoint: 1024,
       settings: { 
         slidesToShow: Math.min(4, cans.length), 
         slidesToScroll: 2,
-        autoplay: true,          // ✅ Autoplay anche responsive
+        autoplay: true,           
         autoplaySpeed: 3000
       },
     },
@@ -59,8 +58,8 @@ function CaroselloLattine() {
       settings: { 
         slidesToShow: Math.min(2, cans.length), 
         slidesToScroll: 1,
-        autoplay: true,          // ✅ Autoplay anche mobile
-        autoplaySpeed: 3500      // ✅ Più lento su mobile
+        autoplay: true,           
+        autoplaySpeed: 3500       
       },
     },
   ],
@@ -98,7 +97,6 @@ function CaroselloLattine() {
 
   return (
     <div className="carosello-container">
-      {/* Header figo con effetti */}
       <div className="carousel-header">
         <h2 className="carousel-title">
           <span className="title-icon">🥤</span>
@@ -138,20 +136,17 @@ function CaroselloLattine() {
                   onMouseEnter={() => setHoveredCan(latta.id)}
                   onMouseLeave={() => setHoveredCan(null)}
                 >
-                  {/* Badge edizione limitata */}
                   {latta.limited && (
                     <div className="limited-badge-floating">
                       <span>⭐</span>
                       <span>LIMITED</span>
                     </div>
                   )}
-                  
-                  {/* Badge categoria */}
+                
                   <div className="category-badge">
                     {latta.category}
                   </div>
                   
-                  {/* Container immagine con effetti */}
                   <div className="latta-image-container">
                     <div className="image-background"></div>
                     <img
@@ -164,7 +159,6 @@ function CaroselloLattine() {
                       loading="lazy"
                     />
                     
-                    {/* Overlay con informazioni */}
                     <div className="latta-overlay">
                       <div className="overlay-content">
                         <h4 className="latta-nome">{latta.nome || latta.name}</h4>
@@ -181,7 +175,6 @@ function CaroselloLattine() {
                     </div>
                   </div>
                   
-                  {/* Info lattina sempre visibili */}
                   <div className="latta-info">
                     <h3 className="latta-nome-main">{latta.nome || latta.name}</h3>
                     <div className="latta-meta">
@@ -196,7 +189,6 @@ function CaroselloLattine() {
         </div>
       )}
       
-      {/* Footer con call to action */}
       <div className="carousel-footer">
         <p className="footer-text">
           ⚡ Scopri tutta la collezione completa
@@ -211,7 +203,7 @@ function CaroselloLattine() {
   );
 }
 
-// Custom Arrow Components
+
 function CustomPrevArrow(props) {
   const { className, style, onClick } = props;
   return (

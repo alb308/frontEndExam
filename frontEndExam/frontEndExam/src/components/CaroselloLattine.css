@@ -1,5 +1,3 @@
-/* CaroselloLattine.css - VERSIONE ULTRA FIGA 🔥 */
-
 .carosello-container {
   margin: 2rem auto;
   padding: 0 2rem;
@@ -24,7 +22,6 @@
   z-index: 1;
 }
 
-/* === HEADER CAROUSEL === */
 .carousel-header {
   text-align: center;
   padding: 3rem 2rem 2rem;
@@ -105,7 +102,7 @@
   text-align: center;
 }
 
-/* === LOADING STATES === */
+
 .loading-container-carousel {
   text-align: center;
   padding: 4rem 2rem;
@@ -175,14 +172,14 @@
   transform: translateY(-2px);
 }
 
-/* === CAROUSEL WRAPPER === */
+
 .carousel-wrapper {
   padding: 2rem 0;
   position: relative;
   z-index: 2;
 }
 
-/* === SLIDE STYLES === */
+
 .latta-slide {
   padding: 1rem;
   height: 400px;
@@ -213,7 +210,7 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* === BADGES === */
+
 .limited-badge-floating {
   position: absolute;
   top: 10px;
@@ -249,7 +246,7 @@
   backdrop-filter: blur(10px);
 }
 
-/* === IMAGE CONTAINER === */
+
 .latta-image-container {
   position: relative;
   height: 60%;
@@ -289,7 +286,7 @@
     drop-shadow(0 0 20px rgba(0, 255, 0, 0.3));
 }
 
-/* === OVERLAY === */
+
 .latta-overlay {
   position: absolute;
   top: 0;
@@ -359,7 +356,7 @@
   transform: translateX(5px);
 }
 
-/* === INFO SECTION === */
+
 .latta-info {
   padding: 1rem;
   height: 40%;
@@ -401,7 +398,7 @@
   font-weight: bold;
 }
 
-/* === CUSTOM ARROWS === */
+
 .custom-arrow {
   width: 50px !important;
   height: 50px !important;
@@ -437,7 +434,7 @@
   right: -25px !important;
 }
 
-/* === SLICK DOTS CUSTOMIZATION === */
+
 .carosello-container .slick-dots {
   bottom: -50px !important;
 }
@@ -451,7 +448,7 @@
   color: #00ff00 !important;
 }
 
-/* === FOOTER === */
+
 .carousel-footer {
   text-align: center;
   padding: 3rem 2rem;
@@ -501,7 +498,6 @@
   margin-bottom: 1rem;
 }
 
-/* === ANIMATIONS === */
 @keyframes bounce {
   0%, 20%, 50%, 80%, 100% {
     transform: translateY(0);
@@ -564,7 +560,6 @@
   }
 }
 
-/* === RESPONSIVE === */
 @media (max-width: 1200px) {
   .collection-stats {
     gap: 1rem;
