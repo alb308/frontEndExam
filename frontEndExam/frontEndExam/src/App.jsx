@@ -11,8 +11,10 @@ import AuthPage from "./pages/AuthPage";
 import Prodotti from "./pages/Prodotti";
 import Promo from "./pages/Promo";
 import Recensioni from "./pages/Recensioni";
+import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
+
 import "./App.css";
 
 function Layout() {
@@ -41,6 +43,7 @@ function Layout() {
         <Route path="/promo" element={<Promo />} />
         <Route path="/recensioni" element={<Recensioni />} />
         <Route path="/cans/:id" element={<CanDetailPage />} />
+        <Route path="/contatti" element={<Contatti />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

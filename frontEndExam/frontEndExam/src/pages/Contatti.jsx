@@ -89,6 +89,18 @@ function Contatti() {
     return Object.keys(newErrors).length === 0;
   };
 
+  // Controlla se il form è valido per abilitare il submit
+  const isFormValid = () => {
+    // Controlla solo i campi obbligatori
+    return formData.nome.trim() && 
+           formData.email.trim() && 
+           emailRegex.test(formData.email) &&
+           formData.oggetto.trim() && 
+           formData.messaggio.trim() &&
+           formData.messaggio.length >= 10 &&
+           formData.messaggio.length <= 1000;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -102,7 +114,8 @@ function Contatti() {
       // Simula invio al server
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Salva in JSON Server
+      // Salva in JSON Server (commenta questa parte se non hai json-server)
+      /*
       const response = await fetch('http://localhost:3001/contacts', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -113,6 +126,10 @@ function Contatti() {
       });
 
       if (!response.ok) throw new Error('Errore nell\'invio');
+      */
+
+      // Per ora simula solo il successo
+      console.log('Form inviato:', formData);
 
       setSubmitSuccess(true);
       setFormData({
@@ -135,146 +152,171 @@ function Contatti() {
   };
 
   return (
-    <div className="contatti-container">
-      <h1>Contattaci</h1>
-      <p className="contatti-subtitle">
-        Hai domande sulla collezione o vuoi suggerire nuove lattine? Scrivici!
-      </p>
+    <div className="contatti-page">
+      <div className="contatti-container">
+        <h1 className="page-title">Contattaci</h1>
+        <p className="contatti-subtitle">
+          Hai domande sulla collezione o vuoi suggerire nuove lattine? Scrivici!
+        </p>
 
-      {submitSuccess && (
-        <div className="success-message">
-          ✅ Messaggio inviato con successo! Ti risponderemo presto.
-        </div>
-      )}
+        {submitSuccess && (
+          <div className="success-message">
+            ✅ Messaggio inviato con successo! Ti risponderemo presto.
+          </div>
+        )}
 
-      {errors.submit && (
-        <div className="error-message">
-          ❌ {errors.submit}
-        </div>
-      )}
+        {errors.submit && (
+          <div className="error-message">
+            ❌ {errors.submit}
+          </div>
+        )}
 
-      <form onSubmit={handleSubmit} className="contact-form" noValidate>
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="nome">Nome *</label>
-            <input
-              type="text"
-              id="nome"
-              name="nome"
-              value={formData.nome}
+        <form onSubmit={handleSubmit} className="contact-form" noValidate>
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="nome">Nome *</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                value={formData.nome}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`form-input ${errors.nome ? 'error' : ''}`}
+                disabled={isSubmitting}
+                placeholder="Il tuo nome"
+              />
+              {errors.nome && <span className="field-error">{errors.nome}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="email">Email *</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`form-input ${errors.email ? 'error' : ''}`}
+                disabled={isSubmitting}
+                placeholder="tua@email.com"
+              />
+              {errors.email && <span className="field-error">{errors.email}</span>}
+            </div>
+          </div>
+
+          <div className="form-row">
+            <div className="form-group">
+              <label htmlFor="telefono">Telefono (opzionale)</label>
+              <input
+                type="tel"
+                id="telefono"
+                name="telefono"
+                value={formData.telefono}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`form-input ${errors.telefono ? 'error' : ''}`}
+                placeholder="+39 123 456 7890"
+                disabled={isSubmitting}
+              />
+              {errors.telefono && <span className="field-error">{errors.telefono}</span>}
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="oggetto">Oggetto *</label>
+              <input
+                type="text"
+                id="oggetto"
+                name="oggetto"
+                value={formData.oggetto}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                className={`form-input ${errors.oggetto ? 'error' : ''}`}
+                disabled={isSubmitting}
+                placeholder="Oggetto del messaggio"
+              />
+              {errors.oggetto && <span className="field-error">{errors.oggetto}</span>}
+            </div>
+          </div>
+
+          <div className="form-group full-width">
+            <label htmlFor="messaggio">Messaggio *</label>
+            <textarea
+              id="messaggio"
+              name="messaggio"
+              value={formData.messaggio}
               onChange={handleChange}
               onBlur={handleBlur}
-              className={errors.nome ? 'error' : ''}
+              className={`form-input ${errors.messaggio ? 'error' : ''}`}
+              rows="6"
               disabled={isSubmitting}
+              placeholder="Scrivi il tuo messaggio..."
             />
-            {errors.nome && <span className="field-error">{errors.nome}</span>}
+            <div className="textarea-info">
+              <span className={formData.messaggio.length > 1000 ? 'over-limit' : ''}>
+                {formData.messaggio.length}/1000 caratteri
+              </span>
+            </div>
+            {errors.messaggio && <span className="field-error">{errors.messaggio}</span>}
           </div>
 
-          <div className="form-group">
-            <label htmlFor="email">Email *</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.email ? 'error' : ''}
+          <div className="form-actions">
+            <button 
+              type="submit" 
+              className="submit-btn"
+              disabled={isSubmitting || !isFormValid()}
+            >
+              {isSubmitting ? (
+                <>
+                  <span className="spinner"></span>
+                  Invio in corso...
+                </>
+              ) : (
+                'Invia Messaggio'
+              )}
+            </button>
+            <button 
+              type="button" 
+              className="reset-btn"
+              onClick={() => {
+                setFormData({
+                  nome: '',
+                  email: '',
+                  telefono: '',
+                  oggetto: '',
+                  messaggio: ''
+                });
+                setErrors({});
+              }}
               disabled={isSubmitting}
-            />
-            {errors.email && <span className="field-error">{errors.email}</span>}
+            >
+              Reset
+            </button>
+          </div>
+
+          <p className="required-note">* Campi obbligatori</p>
+        </form>
+
+        {/* Sezione informazioni aggiuntive */}
+        <div className="contact-info">
+          <h3>Altri Modi per Contattarci</h3>
+          <div className="info-grid">
+            <div className="info-item">
+              <h4>📧 Email</h4>
+              <p>albertogiunta2004@gmail.com</p>
+            </div>
+            <div className="info-item">
+              <h4>📱 Social</h4>
+              <p>@albertogiunta_</p>
+            </div>
+            <div className="info-item">
+              <h4>🕐 Tempi di Risposta</h4>
+              <p>24-48 ore lavorative(se non ho altri esami)</p>
+            </div>
           </div>
         </div>
-
-        <div className="form-row">
-          <div className="form-group">
-            <label htmlFor="telefono">Telefono (opzionale)</label>
-            <input
-              type="tel"
-              id="telefono"
-              name="telefono"
-              value={formData.telefono}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.telefono ? 'error' : ''}
-              placeholder="+39 123 456 7890"
-              disabled={isSubmitting}
-            />
-            {errors.telefono && <span className="field-error">{errors.telefono}</span>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="oggetto">Oggetto *</label>
-            <input
-              type="text"
-              id="oggetto"
-              name="oggetto"
-              value={formData.oggetto}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              className={errors.oggetto ? 'error' : ''}
-              disabled={isSubmitting}
-            />
-            {errors.oggetto && <span className="field-error">{errors.oggetto}</span>}
-          </div>
-        </div>
-
-        <div className="form-group full-width">
-          <label htmlFor="messaggio">Messaggio *</label>
-          <textarea
-            id="messaggio"
-            name="messaggio"
-            value={formData.messaggio}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            className={errors.messaggio ? 'error' : ''}
-            rows="6"
-            disabled={isSubmitting}
-          />
-          <div className="textarea-info">
-            <span className={formData.messaggio.length > 1000 ? 'over-limit' : ''}>
-              {formData.messaggio.length}/1000 caratteri
-            </span>
-          </div>
-          {errors.messaggio && <span className="field-error">{errors.messaggio}</span>}
-        </div>
-
-        <div className="form-actions">
-          <button 
-            type="submit" 
-            className="submit-btn"
-            disabled={isSubmitting || Object.keys(errors).length > 0}
-          >
-            {isSubmitting ? (
-              <>
-                <span className="spinner"></span>
-                Invio in corso...
-              </>
-            ) : (
-              'Invia Messaggio'
-            )}
-          </button>
-          <button 
-            type="button" 
-            className="reset-btn"
-            onClick={() => {
-              setFormData({
-                nome: '',
-                email: '',
-                telefono: '',
-                oggetto: '',
-                messaggio: ''
-              });
-              setErrors({});
-            }}
-            disabled={isSubmitting}
-          >
-            Reset
-          </button>
-        </div>
-
-        <p className="required-note">* Campi obbligatori</p>
-      </form>
+      </div>
     </div>
   );
 }

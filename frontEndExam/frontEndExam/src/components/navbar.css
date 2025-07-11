@@ -1,41 +1,36 @@
-/* src/components/navbar.css */
+/* src/components/navbar.css - VERSIONE UMANA 👥 */
 
 .sidebar {
   position: fixed;
   left: 0;
   top: 0;
   height: 100vh;
-  width: 70px;
+  width: 80px; /* Più largo di base */
   background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
   color: white;
   overflow: hidden;
   transition: width 0.3s ease;
-  padding: 1rem 0.5rem;
+  padding: 1rem 0;
   box-sizing: border-box;
   z-index: 1000;
   border-right: 2px solid #00ff00;
-  box-shadow: 2px 0 10px rgba(0, 255, 0, 0.2);
 }
 
 .sidebar.open {
-  width: 280px; /* Più largo quando aperto */
+  width: 250px; /* Molto più largo quando aperto */
 }
 
 .sidebar-header {
-  padding: 0 0.5rem;
+  padding: 0 1rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
 .sidebar-logo {
-  height: 50px;
+  height: 40px;
   width: auto;
   transition: transform 0.3s ease;
   filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.5));
-}
-
-.sidebar.open .sidebar-logo {
-  transform: scale(1.1);
 }
 
 .sidebar-menu {
@@ -46,40 +41,30 @@
 
 .sidebar-menu li {
   margin: 0.5rem 0;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  overflow: hidden;
+  position: relative;
 }
 
 .sidebar-menu li a,
 .sidebar-menu li span {
-  display: block;
-  padding: 1rem 0.75rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
   color: #fff;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  border-radius: 8px;
   cursor: pointer;
-  white-space: nowrap;
-  position: relative;
-}
-
-.sidebar-menu li:hover {
-  background-color: rgba(0, 255, 0, 0.1);
+  border-radius: 0 25px 25px 0;
+  margin-right: 10px;
 }
 
 .sidebar-menu li:hover a,
 .sidebar-menu li:hover span {
+  background: rgba(0, 255, 0, 0.1);
   color: #00ff00;
   transform: translateX(5px);
   text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
-}
-
-.sidebar-menu li.active {
-  background-color: rgba(0, 255, 0, 0.2);
-  border-left: 3px solid #00ff00;
 }
 
 /* Icone prima del testo */
@@ -89,45 +74,53 @@
   display: inline-block;
   width: 20px;
   height: 20px;
-  margin-right: 10px;
-  vertical-align: middle;
+  margin-right: 12px;
   background-size: contain;
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
+  flex-shrink: 0; /* Non si rimpicciolisce */
 }
 
-.sidebar-menu li:hover a::before,
-.sidebar-menu li:hover span::before {
-  filter: brightness(0) saturate(100%) invert(50%) sepia(100%) saturate(2000%) hue-rotate(120deg);
+/* Icone specifiche */
+.sidebar-menu li:nth-child(1) a::before { content: '🏠'; }
+.sidebar-menu li:nth-child(2) a::before { content: '🥤'; }
+.sidebar-menu li:nth-child(3) a::before { content: '🎯'; }
+.sidebar-menu li:nth-child(4) a::before { content: '⭐'; }
+.sidebar-menu li:nth-child(5) a::before { content: '🔑'; }
+.sidebar-menu li:nth-child(6) a::before { content: '📝'; }
+.sidebar-menu li:nth-child(7) a::before { content: '🛠️'; }
+.sidebar-menu li:nth-child(8) span::before { content: '🚪'; }
+
+/* Testo nascosto quando chiusa */
+.sidebar:not(.open) .sidebar-menu li a span,
+.sidebar:not(.open) .sidebar-menu li span span {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
-/* Nascondi il testo quando la sidebar è chiusa */
-.sidebar:not(.open) .sidebar-menu li a,
-.sidebar:not(.open) .sidebar-menu li span {
-  text-indent: -9999px;
-  padding: 1rem 0.5rem;
-}
-
-.sidebar:not(.open) .sidebar-menu li a::before,
-.sidebar:not(.open) .sidebar-menu li span::before {
-  margin-right: 0;
-  display: block;
-  text-align: center;
+.sidebar.open .sidebar-menu li a span,
+.sidebar.open .sidebar-menu li span span {
+  opacity: 1;
+  width: auto;
+  transition: opacity 0.3s ease 0.1s;
 }
 
 /* Info utente */
 .user-info {
   position: absolute;
   bottom: 1rem;
-  left: 0.5rem;
-  right: 0.5rem;
+  left: 1rem;
+  right: 1rem;
   padding: 1rem;
-  background-color: rgba(0, 255, 0, 0.1);
-  border-radius: 8px;
+  background: rgba(0, 255, 0, 0.1);
+  border-radius: 10px;
   border: 1px solid rgba(0, 255, 0, 0.3);
   opacity: 0;
   transform: translateY(20px);
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .sidebar.open .user-info {
@@ -139,88 +132,56 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  margin-right: 0.5rem;
-  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .user-info span {
   color: #00ff00;
   font-weight: bold;
   font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-/* LAYOUT PRINCIPALE - Sistema 80-20 */
-.main-layout {
-  display: flex;
-  min-height: 100vh;
-}
-
+/* Layout principale */
 .main-content {
-  flex: 1;
-  margin-left: 70px; /* Spazio per sidebar chiusa */
+  margin-left: 80px; /* Stesso della width sidebar */
   transition: margin-left 0.3s ease;
-  background-color: #000;
   min-height: 100vh;
-  position: relative;
 }
 
 /* Quando sidebar è aperta */
 body:has(.sidebar.open) .main-content {
-  margin-left: 280px; /* 20% circa */
+  margin-left: 250px;
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
-  .sidebar.open {
-    width: 250px;
-  }
-  
-  body:has(.sidebar.open) .main-content {
-    margin-left: 250px;
-  }
-}
-
 @media (max-width: 768px) {
   .sidebar {
-    width: 60px;
+    width: 70px;
   }
   
   .sidebar.open {
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.95);
+    width: 200px;
   }
   
   .main-content {
-    margin-left: 60px;
+    margin-left: 70px;
+  }
+  
+  body:has(.sidebar.open) .main-content {
+    margin-left: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar.open {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.95);
   }
   
   body:has(.sidebar.open) .main-content {
     margin-left: 0;
-  }
-  
-  .sidebar.open ~ .main-content {
     filter: blur(2px);
   }
 }
-
-/* Animazioni smooth */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.sidebar.open .sidebar-menu li {
-  animation: slideIn 0.3s ease forwards;
-}
-
-.sidebar.open .sidebar-menu li:nth-child(1) { animation-delay: 0.1s; }
-.sidebar.open .sidebar-menu li:nth-child(2) { animation-delay: 0.2s; }
-.sidebar.open .sidebar-menu li:nth-child(3) { animation-delay: 0.3s; }
-.sidebar.open .sidebar-menu li:nth-child(4) { animation-delay: 0.4s; }
-.sidebar.open .sidebar-menu li:nth-child(5) { animation-delay: 0.5s; }

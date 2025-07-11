@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx
+// src/components/Navbar.jsx - VERSIONE COMPLETA UMANA 👥
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,6 +13,14 @@ function Navbar() {
 
   const handleLogout = () => {
     dispatch(logoutUser());
+    setIsOpen(false); // Chiudi la navbar dopo logout
+  };
+
+  const handleLinkClick = () => {
+    // Chiudi la navbar su mobile quando clicchi un link
+    if (window.innerWidth <= 768) {
+      setIsOpen(false);
+    }
   };
 
   return (
@@ -21,32 +29,103 @@ function Navbar() {
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
     >
+      {/* Header con logo */}
       <div className="sidebar-header">
-        <img src={logo} alt="Logo" className="sidebar-logo" />
+        <img src={logo} alt="Monster Energy Logo" className="sidebar-logo" />
       </div>
+
+      {/* Menu principale */}
       <ul className="sidebar-menu">
-        <li><Link to="/home">Home</Link></li>
-        <li><Link to="/prodotti">Prodotti</Link></li>
-        <li><Link to="/promo">Promozioni</Link></li>
-        <li><Link to="/recensioni">Recensioni</Link></li>
+        <li>
+          <Link to="/home" onClick={handleLinkClick}>
+            <span className="menu-text">Home</span>
+          </Link>
+        </li>
+        
+        <li>
+          <Link to="/prodotti" onClick={handleLinkClick}>
+            <span className="menu-text">Prodotti</span>
+          </Link>
+        </li>
+        
+        <li>
+          <Link to="/promo" onClick={handleLinkClick}>
+            <span className="menu-text">Promozioni</span>
+          </Link>
+        </li>
+        
+        <li>
+          <Link to="/recensioni" onClick={handleLinkClick}>
+            <span className="menu-text">Recensioni</span>
+          </Link>
+        </li>
+
+        <li>
+          <Link to="/contatti" onClick={handleLinkClick}>
+            <span className="menu-text">Contatti</span>
+          </Link>
+        </li>
+
+        {/* Sezione autenticazione */}
         {!isAuthenticated && (
           <>
-            <li><Link to="/login">Accedi</Link></li>
-            <li><Link to="/register">Registrati</Link></li>
+            <li>
+              <Link to="/login" onClick={handleLinkClick}>
+                <span className="menu-text">Accedi</span>
+              </Link>
+            </li>
+            
+            <li>
+              <Link to="/register" onClick={handleLinkClick}>
+                <span className="menu-text">Registrati</span>
+              </Link>
+            </li>
           </>
         )}
+
+        {/* Menu admin */}
         {isAuthenticated && user?.role === 'admin' && (
-          <li><Link to="/admin">Admin Panel</Link></li>
+          <li>
+            <Link to="/admin" onClick={handleLinkClick}>
+              <span className="menu-text">Admin Panel</span>
+            </Link>
+          </li>
         )}
+
+        {/* Logout per utenti autenticati */}
         {isAuthenticated && (
-          <li onClick={handleLogout} style={{cursor: 'pointer'}}>Logout</li>
+          <li>
+            <span 
+              className="menu-item logout-item"
+              onClick={handleLogout}
+            >
+              <span className="menu-text">Logout</span>
+            </span>
+          </li>
         )}
       </ul>
+
+      {/* Info utente (solo se loggato) */}
       {isAuthenticated && user && (
         <div className="user-info">
-          <img src={logo} alt="avatar" style={{ width: 30 }} />
-          <span>{user.name}</span>
+          <img 
+            src={logo} 
+            alt="Avatar utente" 
+            className="user-avatar"
+          />
+          <div className="user-details">
+            <span className="user-name">{user.name}</span>
+            <span className="user-role">{user.role}</span>
+          </div>
         </div>
+      )}
+
+      {/* Overlay per mobile */}
+      {isOpen && (
+        <div 
+          className="mobile-overlay"
+          onClick={() => setIsOpen(false)}
+        />
       )}
     </div>
   );
