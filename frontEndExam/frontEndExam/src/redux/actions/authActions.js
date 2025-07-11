@@ -1,7 +1,7 @@
-// src/redux/actions/authActions.js
+
 const API_URL = 'http://localhost:3001';
 
-// Action creators
+
 export const loginRequest = () => ({
   type: 'LOGIN_REQUEST'
 });
@@ -20,13 +20,13 @@ export const logout = () => ({
   type: 'LOGOUT'
 });
 
-// Thunk actions
+
 export const login = (email, password) => {
   return async (dispatch) => {
     dispatch(loginRequest());
     
     try {
-      // Simulazione login - in produzione useresti una vera API
+      
       const response = await fetch(`${API_URL}/users?email=${email}`);
       const users = await response.json();
       
@@ -54,7 +54,7 @@ export const register = (userData) => {
     dispatch({ type: 'REGISTER_REQUEST' });
     
     try {
-      // Controlla se l'email esiste già
+      
       const checkResponse = await fetch(`${API_URL}/users?email=${userData.email}`);
       const existingUsers = await checkResponse.json();
       
@@ -62,7 +62,7 @@ export const register = (userData) => {
         throw new Error('Email già registrata');
       }
       
-      // Crea nuovo utente
+      
       const response = await fetch(`${API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

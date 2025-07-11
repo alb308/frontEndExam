@@ -1,4 +1,3 @@
-// src/redux/reducers/cansReducer.js
 const initialState = {
   cans: [],
   currentCan: null,

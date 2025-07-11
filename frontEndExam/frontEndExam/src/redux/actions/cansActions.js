@@ -1,13 +1,13 @@
-// src/redux/actions/cansActions.js
+
 const API_URL = 'http://localhost:3001';
 
-// Fetch all cans with filters - compatibile con json-server v1.0
-export const fetchCans = (filters = {}, page = 1, limit = 1000) => { // Default alto per prendere tutto
+
+export const fetchCans = (filters = {}, page = 1, limit = 1000) => { 
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CANS_REQUEST' });
     
     try {
-      // Per json-server v1.0, usa _start e _end invece di _limit
+      
       const start = (page - 1) * limit;
       const end = start + limit;
       
@@ -16,7 +16,7 @@ export const fetchCans = (filters = {}, page = 1, limit = 1000) => { // Default 
         _end: end
       });
       
-      // Aggiungi filtri se presenti
+      
       if (filters.category) queryParams.append('category', filters.category);
       if (filters.year) queryParams.append('year', filters.year);
       if (filters.country) queryParams.append('country', filters.country);
@@ -27,7 +27,7 @@ export const fetchCans = (filters = {}, page = 1, limit = 1000) => { // Default 
       
       console.log(`✅ Redux fetchCans - Lattine caricate: ${cans.length}`);
       
-      // json-server v1.0 potrebbe non restituire X-Total-Count
+      
       const total = response.headers.get('X-Total-Count') || cans.length;
       
       dispatch({
@@ -43,13 +43,13 @@ export const fetchCans = (filters = {}, page = 1, limit = 1000) => { // Default 
   };
 };
 
-// Fetch TUTTE le lattine senza paginazione
+
 export const fetchAllCans = () => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CANS_REQUEST' });
     
     try {
-      // Per json-server v1.0, usa un range molto alto
+      
       const response = await fetch(`${API_URL}/cans?_start=0&_end=1000`);
       const cans = await response.json();
       
@@ -66,7 +66,7 @@ export const fetchAllCans = () => {
   };
 };
 
-// Resto delle funzioni rimane uguale...
+
 export const fetchCanDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CAN_DETAIL_REQUEST' });
@@ -90,7 +90,7 @@ export const fetchCanDetail = (id) => {
   };
 };
 
-// Add new can (admin only)
+
 export const addCan = (canData) => {
   return async (dispatch, getState) => {
     const { auth } = getState();
@@ -124,7 +124,7 @@ export const addCan = (canData) => {
   };
 };
 
-// Update can (admin only)
+
 export const updateCan = (id, updates) => {
   return async (dispatch, getState) => {
     const { auth } = getState();
@@ -157,7 +157,7 @@ export const updateCan = (id, updates) => {
   };
 };
 
-// Delete can (admin only)
+
 export const deleteCan = (id) => {
   return async (dispatch, getState) => {
     const { auth } = getState();
@@ -183,13 +183,13 @@ export const deleteCan = (id) => {
   };
 };
 
-// Set filters
+
 export const setFilters = (filters) => ({
   type: 'SET_FILTERS',
   payload: filters
 });
 
-// Set page
+
 export const setPage = (page) => ({
   type: 'SET_PAGE',
   payload: page

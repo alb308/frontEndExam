@@ -1,7 +1,7 @@
-// src/redux/actions/commentsActions.js
+
 const API_URL = 'http://localhost:3001';
 
-// Fetch comments for a specific can
+
 export const fetchComments = (canId) => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_COMMENTS_REQUEST' });
@@ -23,7 +23,7 @@ export const fetchComments = (canId) => {
   };
 };
 
-// Add new comment
+
 export const addComment = (canId, text) => {
   return async (dispatch, getState) => {
     const { auth } = getState();
@@ -59,7 +59,7 @@ export const addComment = (canId, text) => {
   };
 };
 
-// Delete comment (only by author or admin)
+
 export const deleteComment = (commentId) => {
   return async (dispatch, getState) => {
     const { auth, comments } = getState();

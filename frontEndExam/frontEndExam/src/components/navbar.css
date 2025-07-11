@@ -1,5 +1,3 @@
-/* src/components/navbar.css - FILE COMPLETO CORRETTO */
-
 .sidebar {
   position: fixed;
   left: 0;
@@ -156,7 +154,6 @@
   text-transform: uppercase;
 }
 
-/* Pulsante hamburger mobile */
 .mobile-menu-toggle {
   display: none;
   position: fixed;
@@ -179,7 +176,6 @@
   transform: scale(1.05);
 }
 
-/* Overlay mobile */
 .mobile-overlay {
   display: none;
   position: fixed;
@@ -198,7 +194,6 @@
   opacity: 1;
 }
 
-/* Main content */
 .main-content {
   margin-left: 80px; 
   transition: margin-left 0.3s ease;
@@ -209,9 +204,6 @@ body:has(.sidebar.open) .main-content {
   margin-left: 250px;
 }
 
-/* MEDIA QUERIES */
-
-/* Tablet */
 @media (max-width: 768px) {
   .sidebar {
     width: 70px;
@@ -239,16 +231,14 @@ body:has(.sidebar.open) .main-content {
   }
   
   body:has(.sidebar.open) .main-content {
-    margin-left: 70px; /* Non spostare il contenuto su tablet */
+    margin-left: 70px; 
   }
   
-  /* Mostra pulsante hamburger */
   .mobile-menu-toggle {
     display: block;
   }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
   .sidebar {
     width: 0;
@@ -285,7 +275,6 @@ body:has(.sidebar.open) .main-content {
     margin-left: 0;
   }
   
-  /* Pulsante hamburger sempre visibile su mobile */
   .mobile-menu-toggle {
     display: block;
     opacity: 1;
@@ -296,7 +285,6 @@ body:has(.sidebar.open) .main-content {
     pointer-events: none;
   }
   
-  /* User info più compatta */
   .user-info {
     padding: 0.8rem;
     font-size: 0.8rem;
@@ -308,9 +296,9 @@ body:has(.sidebar.open) .main-content {
   }
 }
 
-/* Fix per pagine specifiche su mobile */
 @media (max-width: 768px) {
-  /* Regola generale per tutte le pagine */
+
+
   .prodotti-container,
   .promo-page,
   .recensioni-page,
@@ -324,7 +312,7 @@ body:has(.sidebar.open) .main-content {
 }
 
 @media (max-width: 480px) {
-  /* Su mobile piccoli nessun margine */
+ 
   .prodotti-container,
   .promo-page,
   .recensioni-page,
@@ -333,6 +321,7 @@ body:has(.sidebar.open) .main-content {
   .home-container,
   .fullscreen-detail {
     margin-left: 0 !important;
-    padding-top: 4rem !important; /* Spazio per hamburger button */
+    padding-top: 4rem !important; 
+    
   }
 }
