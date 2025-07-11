@@ -1,4 +1,4 @@
-// src/components/Navbar.jsx - FILE COMPLETO CORRETTO
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -12,11 +12,11 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
-  // Gestione resize finestra
+  
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 480);
-      // Chiudi la navbar se ridimensioni da mobile a desktop
+      
       if (window.innerWidth > 768) {
         setIsOpen(false);
       }
@@ -26,7 +26,7 @@ function Navbar() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Chiudi navbar quando cambia route su mobile
+  
   useEffect(() => {
     if (isMobile) {
       setIsOpen(false);
@@ -39,7 +39,7 @@ function Navbar() {
   };
 
   const handleLinkClick = () => {
-    // Chiudi la navbar su mobile/tablet quando clicchi un link
+    
     if (window.innerWidth <= 768) {
       setIsOpen(false);
     }
@@ -47,7 +47,6 @@ function Navbar() {
 
   return (
     <>
-      {/* Pulsante hamburger per mobile */}
       {isMobile && !isOpen && (
         <button 
           className="mobile-menu-toggle"
@@ -58,18 +57,15 @@ function Navbar() {
         </button>
       )}
 
-      {/* Sidebar principale */}
       <div
         className={`sidebar ${isOpen ? 'open' : ''}`}
         onMouseEnter={() => !isMobile && setIsOpen(true)}
         onMouseLeave={() => !isMobile && setIsOpen(false)}
       >
-        {/* Header con logo */}
         <div className="sidebar-header">
           <img src={logo} alt="Monster Energy Logo" className="sidebar-logo" />
         </div>
 
-        {/* Menu principale */}
         <ul className="sidebar-menu">
           <li>
             <Link to="/home" onClick={handleLinkClick}>
@@ -101,7 +97,6 @@ function Navbar() {
             </Link>
           </li>
 
-          {/* Sezione autenticazione */}
           {!isAuthenticated && (
             <>
               <li>
@@ -118,7 +113,6 @@ function Navbar() {
             </>
           )}
 
-          {/* Menu admin */}
           {isAuthenticated && user?.role === 'admin' && (
             <li>
               <Link to="/admin" onClick={handleLinkClick}>
@@ -127,7 +121,6 @@ function Navbar() {
             </li>
           )}
 
-          {/* Logout per utenti autenticati */}
           {isAuthenticated && (
             <li>
               <span 
@@ -141,7 +134,6 @@ function Navbar() {
           )}
         </ul>
 
-        {/* Info utente (solo se loggato) */}
         {isAuthenticated && user && (
           <div className="user-info">
             <img 
@@ -157,7 +149,6 @@ function Navbar() {
         )}
       </div>
 
-      {/* Overlay per mobile */}
       {isOpen && (isMobile || window.innerWidth <= 768) && (
         <div 
           className={`mobile-overlay ${isOpen ? 'active' : ''}`}

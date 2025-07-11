@@ -7,93 +7,47 @@ import "./CaroselloLattine.css";
 
 function CaroselloLattine() {
   const [cans, setCans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [hoveredCan, setHoveredCan] = useState(null);
 
   useEffect(() => {
-    const fetchAllCans = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
-        const data = await response.json();
-        
-        console.log('✅ Carosello - Lattine caricate:', data.length);
-        setCans(data);
-        setError(null);
-      } catch (err) {
-        console.error('❌ Errore nel caricamento lattine:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAllCans();
+    fetch('http://localhost:3001/cans?_start=0&_end=1000')
+      .then(res => res.json())
+      .then(data => setCans(data))
+      .catch(() => {});
   }, []);
 
   const settings = {
-  dots: true,
-  infinite: cans.length > 6,
-  speed: 500,
-  slidesToShow: Math.min(6, cans.length),
-  slidesToScroll: 3,
-  autoplay: true,               
-  autoplaySpeed: 3000,         
-  pauseOnHover: true,           
-  pauseOnFocus: true,           
-  arrows: true,                 
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: { 
-        slidesToShow: Math.min(4, cans.length), 
-        slidesToScroll: 2,
-        autoplay: true,           
-        autoplaySpeed: 3000
+    dots: true,
+    infinite: cans.length > 6,
+    speed: 500,
+    slidesToShow: Math.min(6, cans.length),
+    slidesToScroll: 3,
+    autoplay: true,               
+    autoplaySpeed: 3000,         
+    pauseOnHover: true,           
+    pauseOnFocus: true,           
+    arrows: true,                 
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { 
+          slidesToShow: Math.min(4, cans.length), 
+          slidesToScroll: 2,
+          autoplay: true,           
+          autoplaySpeed: 3000
+        },
       },
-    },
-    {
-      breakpoint: 768,
-      settings: { 
-        slidesToShow: Math.min(2, cans.length), 
-        slidesToScroll: 1,
-        autoplay: true,           
-        autoplaySpeed: 3500       
+      {
+        breakpoint: 768,
+        settings: { 
+          slidesToShow: Math.min(2, cans.length), 
+          slidesToScroll: 1,
+          autoplay: true,           
+          autoplaySpeed: 3500       
+        },
       },
-    },
-  ],
-};
-
-  if (loading) return (
-    <div className="carosello-container">
-      <div className="loading-container-carousel">
-        <div className="monster-spinner"></div>
-        <h3 className="loading-text">⚡ Caricamento collezione Monster Energy...</h3>
-        <div className="loading-dots">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-    </div>
-  );
-  
-  if (error) return (
-    <div className="carosello-container">
-      <div className="error-container-carousel">
-        <div className="error-icon">💥</div>
-        <h3>Ops! Qualcosa è andato storto</h3>
-        <p>❌ {error}</p>
-        <button 
-          className="retry-button"
-          onClick={() => window.location.reload()}
-        >
-          🔄 Riprova
-        </button>
-      </div>
-    </div>
-  );
+    ],
+  };
 
   return (
     <div className="carosello-container">
@@ -199,33 +153,6 @@ function CaroselloLattine() {
           <span>→</span>
         </Link>
       </div>
-    </div>
-  );
-}
-
-
-function CustomPrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-arrow custom-prev-arrow`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      <span>‹</span>
-    </div>
-  );
-}
-
-function CustomNextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={`${className} custom-arrow custom-next-arrow`}
-      style={{ ...style }}
-      onClick={onClick}
-    >
-      <span>›</span>
     </div>
   );
 }

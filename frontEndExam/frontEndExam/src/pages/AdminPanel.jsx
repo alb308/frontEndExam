@@ -6,7 +6,6 @@ import './adminPanel.css';
 function AdminPanel() {
   const { user, isAuthenticated } = useSelector(state => state.auth);
   const [cans, setCans] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState('');
   
 
@@ -23,18 +22,13 @@ function AdminPanel() {
   }, []);
 
   async function loadCans() {
-    try {
-      const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
-      const data = await response.json();
-      setCans(data);
-    } catch (error) {
-      setMessage('Errore caricamento');
-    } finally {
-      setLoading(false);
-    }
+    fetch('http://localhost:3001/cans?_start=0&_end=1000')
+      .then(res => res.json())
+      .then(data => setCans(data))
+      .catch(() => {});
   }
 
-if (!isAuthenticated || user?.role !== 'admin') {
+  if (!isAuthenticated || user?.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
@@ -172,38 +166,34 @@ if (!isAuthenticated || user?.role !== 'admin') {
         <div className="cans-section">
           <h2>Lattine ({cans.length})</h2>
           
-          {loading ? (
-            <div style={{ textAlign: 'center', color: '#00ff00' }}>Caricamento...</div>
-          ) : (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
-              {cans.map(can => (
-                <div key={can.id} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #333' }}>
-                  <img src={can.img} alt={can.nome} style={{ width: 80, height: 120, objectFit: 'contain' }} />
-                  <h3 style={{ color: '#00ff00', margin: '0.5rem 0' }}>{can.nome}</h3>
-                  <p style={{ color: '#ccc', margin: '0.5rem 0' }}>{can.category} • {can.year}</p>
-                  {can.limited && (
-                    <span style={{ background: '#ffd700', color: '#000', padding: '0.2rem 0.5rem', borderRadius: '3px', fontSize: '0.8rem', fontWeight: 'bold' }}>
-                      Limited
-                    </span>
-                  )}
-                  <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem' }}>
-                    <button 
-                      onClick={() => editCan(can)}
-                      style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
-                    >
-                      ✏️
-                    </button>
-                    <button 
-                      onClick={() => deleteCan(can.id)}
-                      style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
-                    >
-                      🗑️
-                    </button>
-                  </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
+            {cans.map(can => (
+              <div key={can.id} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #333' }}>
+                <img src={can.img} alt={can.nome} style={{ width: 80, height: 120, objectFit: 'contain' }} />
+                <h3 style={{ color: '#00ff00', margin: '0.5rem 0' }}>{can.nome}</h3>
+                <p style={{ color: '#ccc', margin: '0.5rem 0' }}>{can.category} • {can.year}</p>
+                {can.limited && (
+                  <span style={{ background: '#ffd700', color: '#000', padding: '0.2rem 0.5rem', borderRadius: '3px', fontSize: '0.8rem', fontWeight: 'bold' }}>
+                    Limited
+                  </span>
+                )}
+                <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem' }}>
+                  <button 
+                    onClick={() => editCan(can)}
+                    style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
+                  >
+                    ✏️
+                  </button>
+                  <button 
+                    onClick={() => deleteCan(can.id)}
+                    style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
+                  >
+                    🗑️
+                  </button>
                 </div>
-              ))}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

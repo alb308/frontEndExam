@@ -1,4 +1,4 @@
-/* src/pages/CanDetailPage.css */
+
 .fullscreen-detail {
   position: fixed;
   top: 0;
@@ -103,7 +103,7 @@
   text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
 }
 
-/* Stili per la sezione commenti */
+
 .comments-section {
   margin-top: 40px;
   width: 100%;
@@ -211,7 +211,7 @@
   font-style: italic;
 }
 
-/* Stili per loading ed error */
+
 .fullscreen-loading,
 .fullscreen-error {
   position: fixed;
@@ -240,7 +240,7 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Stili per il prompt di autenticazione */
+
 .auth-prompt {
   margin-top: 15px;
   padding: 20px;

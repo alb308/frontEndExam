@@ -1,4 +1,3 @@
-// src/pages/Contatti.jsx
 import React, { useState } from 'react';
 import './Contatti.css';
 
@@ -15,7 +14,6 @@ function Contatti() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  // Regex per validazione
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[\d\s\-\+\(\)]+$/;
 
@@ -61,7 +59,6 @@ function Contatti() {
       [name]: value
     }));
 
-    // Validazione in tempo reale
     const error = validateField(name, value);
     setErrors(prev => ({
       ...prev,
@@ -89,9 +86,7 @@ function Contatti() {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Controlla se il form è valido per abilitare il submit
   const isFormValid = () => {
-    // Controlla solo i campi obbligatori
     return formData.nome.trim() && 
            formData.email.trim() && 
            emailRegex.test(formData.email) &&
@@ -111,24 +106,8 @@ function Contatti() {
     setIsSubmitting(true);
 
     try {
-      // Simula invio al server
       await new Promise(resolve => setTimeout(resolve, 2000));
       
-      // Salva in JSON Server (commenta questa parte se non hai json-server)
-      /*
-      const response = await fetch('http://localhost:3001/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...formData,
-          createdAt: new Date().toISOString()
-        })
-      });
-
-      if (!response.ok) throw new Error('Errore nell\'invio');
-      */
-
-      // Per ora simula solo il successo
       console.log('Form inviato:', formData);
 
       setSubmitSuccess(true);
@@ -141,7 +120,6 @@ function Contatti() {
       });
       setErrors({});
 
-      // Reset messaggio di successo dopo 5 secondi
       setTimeout(() => setSubmitSuccess(false), 5000);
     } catch (error) {
       console.error('Errore:', error);
@@ -298,7 +276,6 @@ function Contatti() {
           <p className="required-note">* Campi obbligatori</p>
         </form>
 
-        {/* Sezione informazioni aggiuntive */}
         <div className="contact-info">
           <h3>Altri Modi per Contattarci</h3>
           <div className="info-grid">

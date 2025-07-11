@@ -1,4 +1,3 @@
-// src/redux/reducers/commentsReducer.js
 const initialState = {
   comments: [],
   loading: false,

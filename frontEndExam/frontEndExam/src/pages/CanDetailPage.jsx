@@ -10,7 +10,7 @@ function CanDetailPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   
-  const { currentCan: can, loading } = useSelector(state => state.cans);
+  const { currentCan: can } = useSelector(state => state.cans);
   const { comments } = useSelector(state => state.comments);
   const { isAuthenticated, user } = useSelector(state => state.auth);
   
@@ -48,11 +48,7 @@ function CanDetailPage() {
           createdAt: new Date().toISOString()
         })
       });
-      
-      if (!response.ok) throw new Error('Errore nel salvataggio del voto');
-    } catch (error) {
-      console.error("Errore:", error);
-    }
+    } catch (error) {}
     setShowRating(false);
   };
 
@@ -81,18 +77,7 @@ function CanDetailPage() {
     setShowCommentForm(true);
   };
 
-  if (loading) return (
-    <div className="fullscreen-loading">
-      <div className="spinner"></div>
-    </div>
-  );
-
-  if (!can) return (
-    <div className="fullscreen-error">
-      <h2>Lattina non trovata</h2>
-      <button onClick={() => navigate('/')}>Torna alla Home</button>
-    </div>
-  );
+  if (!can) return null;
 
   return (
     <div className="fullscreen-detail">

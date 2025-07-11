@@ -10,7 +10,6 @@ function Register() {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    // Simula registrazione
     setUser({ name: email.split('@')[0], role: 'user' });
     navigate('/home');
   };

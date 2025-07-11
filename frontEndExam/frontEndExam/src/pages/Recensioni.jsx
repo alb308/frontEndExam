@@ -1,4 +1,3 @@
-// src/pages/Recensioni.jsx
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import './recensioni.css';
@@ -8,7 +7,6 @@ function Recensioni() {
   
   const [allCans, setAllCans] = useState([]);
   const [reviews, setReviews] = useState([]);
-  const [loading, setLoading] = useState(true);
   
   const [formData, setFormData] = useState({
     canId: '',
@@ -25,34 +23,16 @@ function Recensioni() {
   const [submitMessage, setSubmitMessage] = useState('');
 
   useEffect(() => {
-    fetchAllCans();
-    fetchReviews();
+    fetch('http://localhost:3001/cans?_start=0&_end=1000')
+      .then(res => res.json())
+      .then(data => setAllCans(data))
+      .catch(() => {});
+
+    fetch('http://localhost:3001/reviews')
+      .then(res => res.json())
+      .then(data => setReviews(data))
+      .catch(() => {});
   }, []);
-
-  const fetchAllCans = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
-      const data = await response.json();
-      console.log(`✅ Recensioni - Lattine caricate: ${data.length}`);
-      setAllCans(data);
-    } catch (error) {
-      console.error('Errore nel caricamento lattine:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchReviews = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/reviews');
-      if (response.ok) {
-        const data = await response.json();
-        setReviews(data);
-      }
-    } catch (error) {
-      console.error('Errore nel caricamento delle recensioni:', error);
-    }
-  };
 
   const validateForm = () => {
     const newErrors = {};
@@ -132,13 +112,12 @@ function Recensioni() {
           cons: '',
           wouldRecommend: true
         });
-        fetchReviews();
-      } else {
-        setSubmitMessage('Errore nell\'invio della recensione');
+        
+        const updatedReviews = await fetch('http://localhost:3001/reviews').then(res => res.json());
+        setReviews(updatedReviews);
       }
     } catch (error) {
-      console.error('Errore:', error);
-      setSubmitMessage('Errore di connessione');
+      setSubmitMessage('Errore nell\'invio della recensione');
     } finally {
       setIsSubmitting(false);
     }
@@ -162,14 +141,6 @@ function Recensioni() {
   const getRatingStars = (rating) => {
     return '★'.repeat(rating) + '☆'.repeat(5 - rating);
   };
-
-  if (loading) return (
-    <div className="recensioni-page">
-      <div style={{ textAlign: 'center', color: '#00ff00', padding: '2rem' }}>
-        ⚡ Caricamento recensioni...
-      </div>
-    </div>
-  );
 
   return (
     <div className="recensioni-page">

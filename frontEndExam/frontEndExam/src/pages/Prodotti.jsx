@@ -4,8 +4,6 @@ import './Prodotti.css';
 
 function Prodotti() {
   const [allCans, setAllCans] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   
   const [localFilters, setLocalFilters] = useState({
     category: '',
@@ -18,24 +16,10 @@ function Prodotti() {
   const itemsPerPage = 12;
 
   useEffect(() => {
-    const fetchAllCans = async () => {
-      try {
-        setLoading(true);
-        const response = await fetch('http://localhost:3001/cans?_start=0&_end=1000');
-        const data = await response.json();
-        
-        console.log(`✅ Prodotti - Lattine caricate: ${data.length}`);
-        setAllCans(data);
-        setError(null);
-      } catch (err) {
-        console.error('❌ Errore nel caricamento prodotti:', err);
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchAllCans();
+    fetch('http://localhost:3001/cans?_start=0&_end=1000')
+      .then(res => res.json())
+      .then(data => setAllCans(data))
+      .catch(() => {});
   }, []);
 
   const categories = [...new Set(allCans.map(can => can.category))].filter(Boolean);
@@ -85,16 +69,6 @@ function Prodotti() {
     setCurrentPage(newPage);
     window.scrollTo(0, 0);
   };
-
-  if (loading) return <div className="prodotti-loading">Caricamento...</div>;
-
-  if (error) return (
-    <div className="prodotti-container">
-      <div style={{ textAlign: 'center', color: '#ff0000', padding: '2rem' }}>
-        ❌ Errore: {error}
-      </div>
-    </div>
-  );
 
   return (
     <div className="prodotti-container">

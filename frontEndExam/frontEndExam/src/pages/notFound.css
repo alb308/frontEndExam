@@ -1,4 +1,4 @@
-/* src/pages/notFound.css */
+
 .not-found-page {
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
   color: #fff;
@@ -264,7 +264,7 @@
   font-weight: bold;
 }
 
-/* Animazioni */
+
 @keyframes float {
   0%, 100% {
     transform: translateY(0) rotate(-15deg);
@@ -310,7 +310,7 @@
   }
 }
 
-/* Responsive */
+
 @media (max-width: 768px) {
   .not-found-page {
     margin-left: 0;
@@ -350,7 +350,7 @@
   }
 }
 
-/* Effetto particelle di sfondo */
+
 .not-found-page::before {
   content: '';
   position: absolute;
