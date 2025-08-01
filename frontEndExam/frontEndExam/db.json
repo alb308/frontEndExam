@@ -245,9 +245,9 @@
       "nome": "Peachy Keen",
       "img": "/lattine/PeachyKeen.png",
       "flavor": "",
-      "year": 2024,
+      "year": 2023,
       "description": "",
-      "limited": false,
+      "limited": true,
       "country": "USA",
       "size": "500ml",
       "category": "Juice",
@@ -1071,6 +1071,13 @@
       "userId": "1",
       "rating": 5,
       "createdAt": "2025-07-10T16:58:58.598Z"
+    },
+    {
+      "id": "72bc",
+      "canId": 28,
+      "userId": "1",
+      "rating": 5,
+      "createdAt": "2025-07-25T10:28:45.843Z"
     }
   ],
   "reviews": [],
