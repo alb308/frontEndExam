@@ -12,21 +12,21 @@ function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 480);
 
-  
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 480);
-      
+
       if (window.innerWidth > 768) {
         setIsOpen(false);
       }
     };
-    
+
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  
+
   useEffect(() => {
     if (isMobile) {
       setIsOpen(false);
@@ -39,7 +39,7 @@ function Navbar() {
   };
 
   const handleLinkClick = () => {
-    
+
     if (window.innerWidth <= 768) {
       setIsOpen(false);
     }
@@ -48,7 +48,7 @@ function Navbar() {
   return (
     <>
       {isMobile && !isOpen && (
-        <button 
+        <button
           className="mobile-menu-toggle"
           onClick={() => setIsOpen(true)}
           aria-label="Apri menu"
@@ -72,24 +72,20 @@ function Navbar() {
               <span className="menu-text">Home</span>
             </Link>
           </li>
-          
+
           <li>
             <Link to="/prodotti" onClick={handleLinkClick}>
               <span className="menu-text">Prodotti</span>
             </Link>
           </li>
-          
+
           <li>
             <Link to="/promo" onClick={handleLinkClick}>
               <span className="menu-text">Promozioni</span>
             </Link>
           </li>
-          
-          <li>
-            <Link to="/recensioni" onClick={handleLinkClick}>
-              <span className="menu-text">Recensioni</span>
-            </Link>
-          </li>
+
+
 
           <li>
             <Link to="/contatti" onClick={handleLinkClick}>
@@ -104,12 +100,8 @@ function Navbar() {
                   <span className="menu-text">Accedi</span>
                 </Link>
               </li>
-              
-              <li>
-                <Link to="/register" onClick={handleLinkClick}>
-                  <span className="menu-text">Registrati</span>
-                </Link>
-              </li>
+
+
             </>
           )}
 
@@ -123,7 +115,7 @@ function Navbar() {
 
           {isAuthenticated && (
             <li>
-              <span 
+              <span
                 className="menu-item logout-item"
                 onClick={handleLogout}
                 style={{ cursor: 'pointer' }}
@@ -136,9 +128,9 @@ function Navbar() {
 
         {isAuthenticated && user && (
           <div className="user-info">
-            <img 
-              src={logo} 
-              alt="Avatar utente" 
+            <img
+              src={logo}
+              alt="Avatar utente"
               className="user-avatar"
             />
             <div className="user-details">
@@ -150,7 +142,7 @@ function Navbar() {
       </div>
 
       {isOpen && (isMobile || window.innerWidth <= 768) && (
-        <div 
+        <div
           className={`mobile-overlay ${isOpen ? 'active' : ''}`}
           onClick={() => setIsOpen(false)}
         />

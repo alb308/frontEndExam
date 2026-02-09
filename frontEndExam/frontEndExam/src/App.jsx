@@ -9,7 +9,6 @@ import CanDetailPage from './pages/CanDetailPage';
 import AuthPage from "./pages/AuthPage";
 import Prodotti from "./pages/Prodotti";
 import Promo from "./pages/Promo";
-import Recensioni from "./pages/Recensioni";
 import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -19,7 +18,7 @@ import "./App.css";
 function Layout() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const hideNavbar = ["/login", "/register"].includes(location.pathname);
+  const hideNavbar = ["/login"].includes(location.pathname);
 
   useEffect(() => {
     dispatch(checkAuth());
@@ -32,7 +31,6 @@ function Layout() {
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path="/login" element={<AuthPage />} />
-        <Route path="/register" element={<AuthPage />} />
         <Route path="/admin" element={
           <ProtectedRoute requiredRole="admin">
             <AdminPanel />
@@ -40,7 +38,6 @@ function Layout() {
         } />
         <Route path="/prodotti" element={<Prodotti />} />
         <Route path="/promo" element={<Promo />} />
-        <Route path="/recensioni" element={<Recensioni />} />
         <Route path="/cans/:id" element={<CanDetailPage />} />
         <Route path="/contatti" element={<Contatti />} />
         <Route path="*" element={<NotFound />} />
