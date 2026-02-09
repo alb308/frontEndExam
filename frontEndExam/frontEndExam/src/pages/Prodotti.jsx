@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Prodotti.css';
+import db from '../data/db.json';
 
 function Prodotti() {
   const [allCans, setAllCans] = useState([]);
-  
+
   const [localFilters, setLocalFilters] = useState({
     category: '',
     year: '',
@@ -16,10 +17,7 @@ function Prodotti() {
   const itemsPerPage = 12;
 
   useEffect(() => {
-    fetch('http://localhost:3001/cans?_start=0&_end=1000')
-      .then(res => res.json())
-      .then(data => setAllCans(data))
-      .catch(() => {});
+    setAllCans(db.cans);
   }, []);
 
   const categories = [...new Set(allCans.map(can => can.category))].filter(Boolean);
@@ -32,7 +30,7 @@ function Prodotti() {
       ...prev,
       [name]: value
     }));
-    setCurrentPage(1); 
+    setCurrentPage(1);
   };
 
   const applyFilters = () => {
@@ -54,13 +52,13 @@ function Prodotti() {
     const matchCategory = !localFilters.category || can.category === localFilters.category;
     const matchYear = !localFilters.year || can.year?.toString() === localFilters.year;
     const matchCountry = !localFilters.country || can.country === localFilters.country;
-    const matchSearch = !localFilters.search || 
+    const matchSearch = !localFilters.search ||
       can.nome?.toLowerCase().includes(localFilters.search.toLowerCase());
-    
+
     return matchCategory && matchYear && matchCountry && matchSearch;
   });
 
-  
+
   const totalPages = Math.ceil(filteredCans.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const paginatedCans = filteredCans.slice(startIndex, startIndex + itemsPerPage);
@@ -73,7 +71,7 @@ function Prodotti() {
   return (
     <div className="prodotti-container">
       <h1>Collezione Completa</h1>
-      
+
       <div className="filters-section">
         <h3>Filtra la collezione</h3>
         <div className="filters-grid">
@@ -143,7 +141,7 @@ function Prodotti() {
 
       <div className="results-info">
         <p>
-          Trovate {filteredCans.length} lattine 
+          Trovate {filteredCans.length} lattine
           {allCans.length > 0 && ` (totale collezione: ${allCans.length})`}
         </p>
       </div>
@@ -168,14 +166,14 @@ function Prodotti() {
 
       {totalPages > 1 && (
         <div className="pagination">
-          <button 
+          <button
             onClick={() => handlePageChange(currentPage - 1)}
             disabled={currentPage === 1}
             className="page-btn"
           >
             ← Precedente
           </button>
-          
+
           <div className="page-numbers">
             {[...Array(totalPages)].map((_, index) => (
               <button
@@ -188,7 +186,7 @@ function Prodotti() {
             ))}
           </div>
 
-          <button 
+          <button
             onClick={() => handlePageChange(currentPage + 1)}
             disabled={currentPage === totalPages}
             className="page-btn"

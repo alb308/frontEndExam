@@ -3,11 +3,12 @@ import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import './adminPanel.css';
 
+import db from '../data/db.json';
+
 function AdminPanel() {
   const { user, isAuthenticated } = useSelector(state => state.auth);
   const [cans, setCans] = useState([]);
   const [message, setMessage] = useState('');
-  
 
   const [nome, setNome] = useState('');
   const [category, setCategory] = useState('');
@@ -16,48 +17,20 @@ function AdminPanel() {
   const [limited, setLimited] = useState(false);
   const [editingId, setEditingId] = useState(null);
 
-
   useEffect(() => {
     loadCans();
   }, []);
 
   async function loadCans() {
-    fetch('http://localhost:3001/cans?_start=0&_end=1000')
-      .then(res => res.json())
-      .then(data => setCans(data))
-      .catch(() => {});
+    setCans(db.cans);
   }
 
   if (!isAuthenticated || user?.role !== 'admin') {
     return <Navigate to="/" />;
   }
 
-
   async function saveCan() {
-    if (!nome || !category || !img) {
-      setMessage('Compila i campi obbligatori');
-      return;
-    }
-
-    const canData = { nome, category, year, img, limited };
-    const url = editingId 
-      ? `http://localhost:3001/cans/${editingId}`
-      : 'http://localhost:3001/cans';
-    const method = editingId ? 'PATCH' : 'POST';
-
-    try {
-      await fetch(url, {
-        method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(editingId ? canData : { ...canData, id: Date.now() })
-      });
-
-      setMessage(editingId ? 'Aggiornato!' : 'Aggiunto!');
-      clearForm();
-      loadCans();
-    } catch (error) {
-      setMessage('Errore salvataggio');
-    }
+    setMessage('Funzionalità disabilitata nella modalità vetrina');
   }
 
   function editCan(can) {
@@ -71,14 +44,7 @@ function AdminPanel() {
 
   async function deleteCan(id) {
     if (!confirm('Eliminare?')) return;
-
-    try {
-      await fetch(`http://localhost:3001/cans/${id}`, { method: 'DELETE' });
-      setMessage('Eliminato!');
-      loadCans();
-    } catch (error) {
-      setMessage('Errore eliminazione');
-    }
+    setMessage('Funzionalità disabilitata nella modalità vetrina');
   }
 
   function clearForm() {
@@ -94,66 +60,66 @@ function AdminPanel() {
     <div className="admin-panel">
       <div className="admin-container">
         <h1 className="admin-title">🛠️ Admin Panel</h1>
-        
+
         {message && (
           <div className={`operation-message ${message.includes('!') ? 'success' : 'error'}`}>
             {message}
           </div>
         )}
-        
+
         <div className="form-section">
           <h2>{editingId ? 'Modifica' : 'Aggiungi'} Lattina</h2>
-          
+
           <div style={{ display: 'grid', gap: '1rem', maxWidth: '500px' }}>
-            <input 
-              placeholder="Nome lattina *" 
-              value={nome} 
+            <input
+              placeholder="Nome lattina *"
+              value={nome}
               onChange={(e) => setNome(e.target.value)}
               style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
             />
-            
-            <input 
-              placeholder="Categoria *" 
-              value={category} 
+
+            <input
+              placeholder="Categoria *"
+              value={category}
               onChange={(e) => setCategory(e.target.value)}
               style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
             />
-            
-            <input 
-              type="number" 
-              placeholder="Anno" 
-              value={year} 
+
+            <input
+              type="number"
+              placeholder="Anno"
+              value={year}
               onChange={(e) => setYear(Number(e.target.value))}
               style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
             />
-            
-            <input 
-              placeholder="URL Immagine *" 
-              value={img} 
+
+            <input
+              placeholder="URL Immagine *"
+              value={img}
               onChange={(e) => setImg(e.target.value)}
               style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', borderRadius: '4px' }}
             />
-            
+
             <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#fff' }}>
-              <input 
-                type="checkbox" 
-                checked={limited} 
-                onChange={(e) => setLimited(e.target.checked)} 
+              <input
+                type="checkbox"
+                checked={limited}
+                onChange={(e) => setLimited(e.target.checked)}
               />
               Edizione Limitata
             </label>
           </div>
-          
+
           <div style={{ display: 'flex', gap: '1rem', marginTop: '1rem' }}>
-            <button 
-              onClick={saveCan} 
+            <button
+              onClick={saveCan}
               style={{ background: '#00ff00', color: '#000', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '4px', cursor: 'pointer' }}
             >
               {editingId ? 'Modifica' : 'Aggiungi'}
             </button>
-            
+
             {editingId && (
-              <button 
+              <button
                 onClick={clearForm}
                 style={{ background: '#ff3333', color: '#fff', border: 'none', padding: '0.8rem 1.5rem', borderRadius: '4px', cursor: 'pointer' }}
               >
@@ -162,10 +128,10 @@ function AdminPanel() {
             )}
           </div>
         </div>
-        
+
         <div className="cans-section">
           <h2>Lattine ({cans.length})</h2>
-          
+
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1rem' }}>
             {cans.map(can => (
               <div key={can.id} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '8px', textAlign: 'center', border: '1px solid #333' }}>
@@ -178,13 +144,13 @@ function AdminPanel() {
                   </span>
                 )}
                 <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center', marginTop: '0.5rem' }}>
-                  <button 
+                  <button
                     onClick={() => editCan(can)}
                     style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
                   >
                     ✏️
                   </button>
-                  <button 
+                  <button
                     onClick={() => deleteCan(can.id)}
                     style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid #333', color: '#fff', padding: '0.5rem', borderRadius: '4px', cursor: 'pointer' }}
                   >

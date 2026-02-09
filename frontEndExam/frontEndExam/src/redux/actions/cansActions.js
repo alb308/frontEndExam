@@ -1,38 +1,40 @@
+import db from '../../data/db.json';
 
-const API_URL = 'http://localhost:3001';
+const getAllCans = () => db.cans;
 
-
-export const fetchCans = (filters = {}, page = 1, limit = 1000) => { 
+export const fetchCans = (filters = {}, page = 1, limit = 1000) => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CANS_REQUEST' });
-    
+
     try {
-      
+      let cans = getAllCans();
+
+      // Apply filters
+      if (filters.category) {
+        cans = cans.filter(can => can.category === filters.category);
+      }
+      if (filters.year) {
+        cans = cans.filter(can => can.year?.toString() === filters.year?.toString());
+      }
+      if (filters.country) {
+        cans = cans.filter(can => can.country === filters.country);
+      }
+      if (filters.search) {
+        const query = filters.search.toLowerCase();
+        cans = cans.filter(can => can.nome?.toLowerCase().includes(query));
+      }
+
+      // Pagination
+      const total = cans.length;
       const start = (page - 1) * limit;
       const end = start + limit;
-      
-      let queryParams = new URLSearchParams({
-        _start: start,
-        _end: end
-      });
-      
-      
-      if (filters.category) queryParams.append('category', filters.category);
-      if (filters.year) queryParams.append('year', filters.year);
-      if (filters.country) queryParams.append('country', filters.country);
-      if (filters.search) queryParams.append('q', filters.search);
-      
-      const response = await fetch(`${API_URL}/cans?${queryParams}`);
-      const cans = await response.json();
-      
-      console.log(`✅ Redux fetchCans - Lattine caricate: ${cans.length}`);
-      
-      
-      const total = response.headers.get('X-Total-Count') || cans.length;
-      
+      const paginatedCans = cans.slice(start, end);
+
+      console.log(`✅ Redux fetchCans - Lattine caricate: ${paginatedCans.length}`);
+
       dispatch({
         type: 'FETCH_CANS_SUCCESS',
-        payload: { cans, total: parseInt(total) }
+        payload: { cans: paginatedCans, total }
       });
     } catch (error) {
       dispatch({
@@ -43,16 +45,13 @@ export const fetchCans = (filters = {}, page = 1, limit = 1000) => {
   };
 };
 
-
 export const fetchAllCans = () => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CANS_REQUEST' });
-    
+
     try {
-      
-      const response = await fetch(`${API_URL}/cans?_start=0&_end=1000`);
-      const cans = await response.json();
-      
+      const cans = getAllCans();
+
       dispatch({
         type: 'FETCH_CANS_SUCCESS',
         payload: { cans, total: cans.length }
@@ -66,17 +65,16 @@ export const fetchAllCans = () => {
   };
 };
 
-
 export const fetchCanDetail = (id) => {
   return async (dispatch) => {
     dispatch({ type: 'FETCH_CAN_DETAIL_REQUEST' });
-    
+
     try {
-      const response = await fetch(`${API_URL}/cans/${id}`);
-      if (!response.ok) throw new Error('Lattina non trovata');
-      
-      const can = await response.json();
-      
+      const cans = getAllCans();
+      const can = cans.find(c => c.id.toString() === id.toString());
+
+      if (!can) throw new Error('Lattina non trovata');
+
       dispatch({
         type: 'FETCH_CAN_DETAIL_SUCCESS',
         payload: can
@@ -90,105 +88,28 @@ export const fetchCanDetail = (id) => {
   };
 };
 
-
 export const addCan = (canData) => {
   return async (dispatch, getState) => {
-    const { auth } = getState();
-    
-    if (!auth.user || auth.user.role !== 'admin') {
-      return { success: false, error: 'Non autorizzato' };
-    }
-    
-    try {
-      const response = await fetch(`${API_URL}/cans`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...canData,
-          id: Date.now(),
-          createdAt: new Date().toISOString()
-        })
-      });
-      
-      const newCan = await response.json();
-      
-      dispatch({
-        type: 'ADD_CAN_SUCCESS',
-        payload: newCan
-      });
-      
-      return { success: true, data: newCan };
-    } catch (error) {
-      return { success: false, error: error.message };
-    }
+    return { success: false, error: 'Funzionalità disabilitata nella modalità vetrina' };
   };
 };
-
 
 export const updateCan = (id, updates) => {
   return async (dispatch, getState) => {
-    const { auth } = getState();
-    
-    if (!auth.user || auth.user.role !== 'admin') {
-      return { success: false, error: 'Non autorizzato' };
-    }
-    
-    try {
-      const response = await fetch(`${API_URL}/cans/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...updates,
-          updatedAt: new Date().toISOString()
-        })
-      });
-      
-      const updatedCan = await response.json();
-      
-      dispatch({
-        type: 'UPDATE_CAN_SUCCESS',
-        payload: updatedCan
-      });
-      
-      return { success: true, data: updatedCan };
-    } catch (error) {
-      return { success: false, error: error.message };
-    }
+    return { success: false, error: 'Funzionalità disabilitata nella modalità vetrina' };
   };
 };
-
 
 export const deleteCan = (id) => {
   return async (dispatch, getState) => {
-    const { auth } = getState();
-    
-    if (!auth.user || auth.user.role !== 'admin') {
-      return { success: false, error: 'Non autorizzato' };
-    }
-    
-    try {
-      await fetch(`${API_URL}/cans/${id}`, {
-        method: 'DELETE'
-      });
-      
-      dispatch({
-        type: 'DELETE_CAN_SUCCESS',
-        payload: id
-      });
-      
-      return { success: true };
-    } catch (error) {
-      return { success: false, error: error.message };
-    }
+    return { success: false, error: 'Funzionalità disabilitata nella modalità vetrina' };
   };
 };
-
 
 export const setFilters = (filters) => ({
   type: 'SET_FILTERS',
   payload: filters
 });
-
 
 export const setPage = (page) => ({
   type: 'SET_PAGE',

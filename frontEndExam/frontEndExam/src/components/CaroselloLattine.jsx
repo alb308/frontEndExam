@@ -4,16 +4,14 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import "./CaroselloLattine.css";
+import db from "../data/db.json";
 
 function CaroselloLattine() {
   const [cans, setCans] = useState([]);
   const [hoveredCan, setHoveredCan] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:3001/cans?_start=0&_end=1000')
-      .then(res => res.json())
-      .then(data => setCans(data))
-      .catch(() => {});
+    setCans(db.cans);
   }, []);
 
   const settings = {
@@ -22,28 +20,28 @@ function CaroselloLattine() {
     speed: 500,
     slidesToShow: Math.min(6, cans.length),
     slidesToScroll: 3,
-    autoplay: true,               
-    autoplaySpeed: 3000,         
-    pauseOnHover: true,           
-    pauseOnFocus: true,           
-    arrows: true,                 
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+    pauseOnFocus: true,
+    arrows: true,
     responsive: [
       {
         breakpoint: 1024,
-        settings: { 
-          slidesToShow: Math.min(4, cans.length), 
+        settings: {
+          slidesToShow: Math.min(4, cans.length),
           slidesToScroll: 2,
-          autoplay: true,           
+          autoplay: true,
           autoplaySpeed: 3000
         },
       },
       {
         breakpoint: 768,
-        settings: { 
-          slidesToShow: Math.min(2, cans.length), 
+        settings: {
+          slidesToShow: Math.min(2, cans.length),
           slidesToScroll: 1,
-          autoplay: true,           
-          autoplaySpeed: 3500       
+          autoplay: true,
+          autoplaySpeed: 3500
         },
       },
     ],
@@ -71,7 +69,7 @@ function CaroselloLattine() {
           </div>
         </div>
       </div>
-      
+
       {cans.length === 0 ? (
         <div className="empty-collection">
           <div className="empty-icon">📭</div>
@@ -83,8 +81,8 @@ function CaroselloLattine() {
           <Slider {...settings}>
             {cans.map((latta, index) => (
               <div key={latta.id} className="latta-slide">
-                <Link 
-                  to={`/cans/${latta.id}`} 
+                <Link
+                  to={`/cans/${latta.id}`}
                   className="latta-card"
                   onMouseEnter={() => setHoveredCan(latta.id)}
                   onMouseLeave={() => setHoveredCan(null)}
@@ -95,11 +93,11 @@ function CaroselloLattine() {
                       <span>LIMITED</span>
                     </div>
                   )}
-                
+
                   <div className="category-badge">
                     {latta.category}
                   </div>
-                  
+
                   <div className="latta-image-container">
                     <div className="image-background"></div>
                     <img
@@ -111,7 +109,7 @@ function CaroselloLattine() {
                       }}
                       loading="lazy"
                     />
-                    
+
                     <div className="latta-overlay">
                       <div className="overlay-content">
                         <h4 className="latta-nome">{latta.nome || latta.name}</h4>
@@ -127,7 +125,7 @@ function CaroselloLattine() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="latta-info">
                     <h3 className="latta-nome-main">{latta.nome || latta.name}</h3>
                     <div className="latta-meta">
@@ -141,7 +139,7 @@ function CaroselloLattine() {
           </Slider>
         </div>
       )}
-      
+
       <div className="carousel-footer">
         <p className="footer-text">
           ⚡ Scopri tutta la collezione completa
