@@ -72,7 +72,7 @@ function CaroselloLattine() {
 
       {cans.length === 0 ? (
         <div className="empty-collection">
-          <div className="empty-icon">📭</div>
+          <div className="empty-icon"></div>
           <h3>Collezione vuota</h3>
           <p>Nessuna lattina Monster Energy trovata</p>
         </div>
@@ -88,9 +88,8 @@ function CaroselloLattine() {
                   onMouseLeave={() => setHoveredCan(null)}
                 >
                   {latta.limited && (
-                    <div className="limited-badge-floating">
-                      <span>⭐</span>
-                      <span>LIMITED</span>
+                    <div className="limited-badge-parallel">
+                      LIMITED
                     </div>
                   )}
 
@@ -114,13 +113,13 @@ function CaroselloLattine() {
                       <div className="overlay-content">
                         <h4 className="latta-nome">{latta.nome || latta.name}</h4>
                         <p className="latta-details">
-                          <span className="detail-item">📅 {latta.year}</span>
-                          <span className="detail-item">🌍 {latta.country}</span>
-                          {latta.size && <span className="detail-item">📏 {latta.size}</span>}
+                          <span className="detail-item">{latta.year}</span>
+                          <span className="detail-item">{latta.country}</span>
+                          {latta.size && <span className="detail-item">{latta.size}</span>}
                         </p>
                         <div className="view-more">
-                          <span>👁️ Visualizza Dettagli</span>
-                          <div className="arrow">→</div>
+                          <span>Visualizza Dettagli</span>
+                          <div className="arrow"></div>
                         </div>
                       </div>
                     </div>
@@ -142,12 +141,12 @@ function CaroselloLattine() {
 
       <div className="carousel-footer">
         <p className="footer-text">
-          ⚡ Scopri tutta la collezione completa
+          Scopri tutta la collezione completa
         </p>
         <Link to="/prodotti" className="view-all-button">
-          <span>🔍</span>
+          <span></span>
           <span>Esplora Tutte le Lattine</span>
-          <span>→</span>
+          <span></span>
         </Link>
       </div>
     </div>

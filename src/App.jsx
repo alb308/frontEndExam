@@ -6,10 +6,8 @@ import AdminPanel from "./pages/AdminPanel";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import CanDetailPage from './pages/CanDetailPage';
-import AuthPage from "./pages/AuthPage";
+
 import Prodotti from "./pages/Prodotti";
-import Promo from "./pages/Promo";
-import Contatti from "./pages/Contatti";
 import NotFound from "./pages/NotFound";
 import ProtectedRoute from "./components/ProtectedRoute";
 
@@ -30,16 +28,13 @@ function Layout() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<AuthPage />} />
         <Route path="/admin" element={
           <ProtectedRoute requiredRole="admin">
             <AdminPanel />
           </ProtectedRoute>
         } />
         <Route path="/prodotti" element={<Prodotti />} />
-        <Route path="/promo" element={<Promo />} />
         <Route path="/cans/:id" element={<CanDetailPage />} />
-        <Route path="/contatti" element={<Contatti />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

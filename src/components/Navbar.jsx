@@ -53,7 +53,7 @@ function Navbar() {
           onClick={() => setIsOpen(true)}
           aria-label="Apri menu"
         >
-          ☰
+          MENU
         </button>
       )}
 
@@ -79,31 +79,9 @@ function Navbar() {
             </Link>
           </li>
 
-          <li>
-            <Link to="/promo" onClick={handleLinkClick}>
-              <span className="menu-text">Promozioni</span>
-            </Link>
-          </li>
 
 
 
-          <li>
-            <Link to="/contatti" onClick={handleLinkClick}>
-              <span className="menu-text">Contatti</span>
-            </Link>
-          </li>
-
-          {!isAuthenticated && (
-            <>
-              <li>
-                <Link to="/login" onClick={handleLinkClick}>
-                  <span className="menu-text">Accedi</span>
-                </Link>
-              </li>
-
-
-            </>
-          )}
 
           {isAuthenticated && user?.role === 'admin' && (
             <li>
