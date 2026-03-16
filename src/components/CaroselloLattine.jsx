@@ -41,7 +41,8 @@ function CaroselloLattine() {
           slidesToShow: Math.min(2, cans.length),
           slidesToScroll: 1,
           autoplay: true,
-          autoplaySpeed: 3500
+          autoplaySpeed: 3500,
+          dots: false
         },
       },
     ],

@@ -13,7 +13,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "2",
@@ -28,7 +29,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "3",
@@ -43,7 +45,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "4",
@@ -58,7 +61,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "5",
@@ -73,7 +77,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "6",
@@ -88,7 +93,8 @@
       "category": "Original",
       "acquiredDate": "2018-04-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "7",
@@ -103,7 +109,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "8",
@@ -118,7 +125,8 @@
       "category": "Punch",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "9",
@@ -133,7 +141,8 @@
       "category": "Special Edition",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "10",
@@ -148,7 +157,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "11",
@@ -163,7 +173,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "12",
@@ -178,7 +189,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "13",
@@ -193,7 +205,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "14",
@@ -208,7 +221,8 @@
       "category": "Sport",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "15",
@@ -223,7 +237,8 @@
       "category": "Original",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "16",
@@ -238,7 +253,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "17",
@@ -253,7 +269,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "18",
@@ -268,7 +285,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "19",
@@ -283,7 +301,8 @@
       "category": "Original",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "20",
@@ -298,7 +317,8 @@
       "category": "Original",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "21",
@@ -313,7 +333,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "22",
@@ -328,7 +349,8 @@
       "category": "Punch",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "23",
@@ -343,7 +365,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "24",
@@ -358,7 +381,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "25",
@@ -373,7 +397,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "26",
@@ -388,7 +413,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "27",
@@ -403,7 +429,8 @@
       "category": "Reserve",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "28",
@@ -418,7 +445,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "29",
@@ -433,7 +461,8 @@
       "category": "Sport",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "30",
@@ -448,7 +477,8 @@
       "category": "Reserve",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "31",
@@ -463,7 +493,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "32",
@@ -478,7 +509,8 @@
       "category": "Nitro",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "33",
@@ -493,7 +525,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "34",
@@ -508,7 +541,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "35",
@@ -523,7 +557,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "36",
@@ -538,7 +573,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "37",
@@ -553,7 +589,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "38",
@@ -568,7 +605,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "39",
@@ -583,7 +621,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "40",
@@ -598,7 +637,8 @@
       "category": "Reserve",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "41",
@@ -613,7 +653,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "42",
@@ -628,7 +669,8 @@
       "category": "Sport",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "43",
@@ -643,7 +685,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "44",
@@ -658,7 +701,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "45",
@@ -673,7 +717,8 @@
       "category": "Nitro",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "46",
@@ -688,7 +733,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "47",
@@ -703,7 +749,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "48",
@@ -718,7 +765,8 @@
       "category": "Special Edition",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "49",
@@ -733,7 +781,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "50",
@@ -748,7 +797,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "51",
@@ -763,7 +813,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "52",
@@ -778,7 +829,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "53",
@@ -793,7 +845,8 @@
       "category": "Reserve",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "54",
@@ -808,7 +861,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "55",
@@ -823,7 +877,8 @@
       "category": "Original",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "56",
@@ -838,7 +893,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "57",
@@ -853,7 +909,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "58",
@@ -868,7 +925,8 @@
       "category": "Tea",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "59",
@@ -883,7 +941,8 @@
       "category": "Coffee",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "60",
@@ -898,7 +957,8 @@
       "category": "Punch",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "61",
@@ -913,7 +973,8 @@
       "category": "Special Edition",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "62",
@@ -928,7 +989,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "63",
@@ -943,7 +1005,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "64",
@@ -958,7 +1021,8 @@
       "category": "Zero Sugar",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "65",
@@ -973,7 +1037,8 @@
       "category": "Juice",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
     },
     {
       "id": "66",
@@ -988,7 +1053,280 @@
       "category": "Sport",
       "acquiredDate": "2020-01-01",
       "condition": "Perfetta",
-      "notes": ""
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "67",
+      "nome": "Monster Energy Electric Blue",
+      "img": "/lattine/electric blue.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "473ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "68",
+      "nome": "Monster Energy Orange Dreamsicle",
+      "img": "/lattine/orange dreamsticle.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "473ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "69",
+      "nome": "Monster Energy Ultra Wild Passion",
+      "img": "/lattine/ultra wild passion.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "473ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "70",
+      "nome": "Monster Energy BLIND LEMON CHERRY LEMONADE 6%",
+      "img": "/lattine/BLIND-LEMON-CHERRY.webp",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "355ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "71",
+      "nome": "Monster Energy BLIND LEMON ORIGINAL LEMONADE 6%",
+      "img": "/lattine/blind-lemon.webp",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "355ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "72",
+      "nome": "Monster Energy BLIND LEMON STRAWBERRY LEMONADE 6%",
+      "img": "/lattine/blind-lemon_strawberry.avif",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "355ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "73",
+      "nome": "Monster Energy BLIND LEMON PEACH LEMONADE 6%",
+      "img": "/lattine/blind-lemon_peach.avif",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "USA",
+      "size": "355ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "74",
+      "nome": "Pipeline Punch 16%",
+      "img": "/lattine/pipelinepunchjap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "75",
+      "nome": "Energy Zero Old",
+      "img": "/lattine/ultrazerojap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "76",
+      "nome": "Ultra White",
+      "img": "/lattine/ultrawhitejap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "77",
+      "nome": "Ultra Violet",
+      "img": "/lattine/ultravioletjap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "78",
+      "nome": "Classic",
+      "img": "/lattine/classicjapan.webp",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "79",
+      "nome": "M3 Mini",
+      "img": "/lattine/m3minijap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "150ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "80",
+      "nome": "Ripper",
+      "img": "/lattine/ripperjap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "81",
+      "nome": "Classic Bottiglia",
+      "img": "/lattine/classicjapcap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "82",
+      "nome": "Pipeline Punch Bottiglia",
+      "img": "/lattine/PipelinePunchjapcap.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "Japan",
+      "size": "500ml",
+      "category": "New",
+      "acquiredDate": "2026-01-01",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
+    },
+    {
+      "id": "83",
+      "nome": "VR46 Zero Sugar",
+      "img": "/lattine/vr46zero.png",
+      "flavor": "",
+      "year": 2026,
+      "description": "",
+      "limited": false,
+      "country": "",
+      "size": "500ml",
+      "category": "Zero Sugar",
+      "acquiredDate": "2026-03-16",
+      "condition": "Perfetta",
+      "notes": "",
+      "gusto": ""
     }
   ],
   "users": [
