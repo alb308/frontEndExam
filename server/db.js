@@ -51,18 +51,23 @@ db.exec(`
   );
 `);
 
-// Sync the collection from db.json on every start: new cans get added, existing ones (and their votes) are kept.
+// Sync the collection from db.json on every start: new cans get added, existing ones get their details
+// refreshed (name, image, ...), and votes are kept.
 const seed = JSON.parse(readFileSync(join(root, 'db.json'), 'utf8'));
-const insert = db.prepare(`
-  INSERT OR IGNORE INTO cans (id, name, img, year, limited, country, size, category, acquired_date)
+const upsert = db.prepare(`
+  INSERT INTO cans (id, name, img, year, limited, country, size, category, acquired_date)
   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  ON CONFLICT (id) DO UPDATE SET name = excluded.name, img = excluded.img, year = excluded.year,
+    limited = excluded.limited, country = excluded.country, size = excluded.size,
+    category = excluded.category, acquired_date = excluded.acquired_date
 `);
-let added = 0;
+const countCans = () => db.prepare('SELECT COUNT(*) AS n FROM cans').get().n;
+const before = countCans();
 for (const c of seed.cans) {
-  const { changes } = insert.run(Number(c.id), c.nome.trim(), c.img, c.year ?? null, c.limited ? 1 : 0,
+  upsert.run(Number(c.id), c.nome.trim(), c.img, c.year ?? null, c.limited ? 1 : 0,
     c.country || null, c.size || null, c.category || null, c.acquiredDate || null);
-  added += Number(changes);
 }
+const added = countCans() - before;
 if (added) console.log(`[db] aggiunte ${added} lattine da db.json`);
 
 // The owner account is created on first start. In production its credentials must come from the environment.

@@ -3,7 +3,7 @@
     {
       "id": "1",
       "nome": "Khaos Old",
-      "img": "/lattine/KhaosOld.png",
+      "img": "/lattine/KhaosOld.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -18,7 +18,7 @@
     {
       "id": "2",
       "nome": "Killer Brew Loca Moca",
-      "img": "/lattine/KillerBrewLocaMoca.png",
+      "img": "/lattine/KillerBrewLocaMoca.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -33,7 +33,7 @@
     {
       "id": "3",
       "nome": "Bad Apple",
-      "img": "/lattine/BadApple.png",
+      "img": "/lattine/BadApple.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -48,7 +48,7 @@
     {
       "id": "4",
       "nome": "Khaos Mini",
-      "img": "/lattine/KhaosMini.png",
+      "img": "/lattine/KhaosMini.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -63,7 +63,7 @@
     {
       "id": "5",
       "nome": "Rehab Strawberry Lemonade",
-      "img": "/lattine/RehabStrawberryLemonade.png",
+      "img": "/lattine/RehabStrawberryLemonade.webp",
       "flavor": "",
       "year": 2024,
       "description": "",
@@ -78,7 +78,7 @@
     {
       "id": "6",
       "nome": "Classic",
-      "img": "/lattine/Classic.png",
+      "img": "/lattine/Classic.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -93,7 +93,7 @@
     {
       "id": "7",
       "nome": "Java French Vanilla",
-      "img": "/lattine/JavaFrenchVanilla.png",
+      "img": "/lattine/JavaFrenchVanilla.webp",
       "flavor": "",
       "year": 2024,
       "description": "",
@@ -108,7 +108,7 @@
     {
       "id": "8",
       "nome": "Punch MIXXD New",
-      "img": "/lattine/PunchMIXXDNew.png",
+      "img": "/lattine/PunchMIXXDNew.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -123,7 +123,7 @@
     {
       "id": "9",
       "nome": "Hamilton New",
-      "img": "/lattine/HamiltonNew.png",
+      "img": "/lattine/HamiltonNew.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -138,7 +138,7 @@
     {
       "id": "10",
       "nome": "Ultra Violet",
-      "img": "/lattine/UltraViolet.png",
+      "img": "/lattine/UltraViolet.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -153,7 +153,7 @@
     {
       "id": "11",
       "nome": "Ultra Paradise",
-      "img": "/lattine/UltraParadise.png",
+      "img": "/lattine/UltraParadise.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -168,7 +168,7 @@
     {
       "id": "12",
       "nome": "Juiced Aussie Lemonade",
-      "img": "/lattine/JuicedAussieLemonade.png",
+      "img": "/lattine/JuicedAussieLemonade.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -183,7 +183,7 @@
     {
       "id": "13",
       "nome": "Mango Loco Mini",
-      "img": "/lattine/MangoLocoMini.png",
+      "img": "/lattine/MangoLocoMini.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -198,7 +198,7 @@
     {
       "id": "14",
       "nome": "Super Fuel Sub Zero",
-      "img": "/lattine/SuperFuelSubZero.png",
+      "img": "/lattine/SuperFuelSubZero.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -213,7 +213,7 @@
     {
       "id": "15",
       "nome": "Import",
-      "img": "/lattine/Import.png",
+      "img": "/lattine/Import.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -228,7 +228,7 @@
     {
       "id": "16",
       "nome": "Ultra Vice Guava",
-      "img": "/lattine/UltraViceGuava.png",
+      "img": "/lattine/UltraViceGuava.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -243,7 +243,7 @@
     {
       "id": "17",
       "nome": "Peachy Keen",
-      "img": "/lattine/PeachyKeen.png",
+      "img": "/lattine/PeachyKeen.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -258,7 +258,7 @@
     {
       "id": "18",
       "nome": "Dragon Chinese Tea",
-      "img": "/lattine/DragonChineseTea.png",
+      "img": "/lattine/DragonChineseTea.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -273,7 +273,7 @@
     {
       "id": "19",
       "nome": "Mule",
-      "img": "/lattine/Mule.png",
+      "img": "/lattine/Mule.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -288,7 +288,7 @@
     {
       "id": "20",
       "nome": "Assault",
-      "img": "/lattine/Assault.png",
+      "img": "/lattine/Assault.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -303,7 +303,7 @@
     {
       "id": "21",
       "nome": "Java Mean Bean",
-      "img": "/lattine/JavaMeanBean.png",
+      "img": "/lattine/JavaMeanBean.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -318,7 +318,7 @@
     {
       "id": "22",
       "nome": "Rio Punch",
-      "img": "/lattine/RioPunch.png",
+      "img": "/lattine/RioPunch.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -333,7 +333,7 @@
     {
       "id": "23",
       "nome": "Classic Zero Sugar Old",
-      "img": "/lattine/ClassicZeroSugarOld.png",
+      "img": "/lattine/ClassicZeroSugarOld.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -348,7 +348,7 @@
     {
       "id": "24",
       "nome": "Ultra Rosa",
-      "img": "/lattine/UltraRosa.png",
+      "img": "/lattine/UltraRosa.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -363,7 +363,7 @@
     {
       "id": "25",
       "nome": "Ultra Fantasy Ruby Red",
-      "img": "/lattine/UltraFantasyRubyRed.png",
+      "img": "/lattine/UltraFantasyRubyRed.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -378,7 +378,7 @@
     {
       "id": "26",
       "nome": "Juiced Ripper New",
-      "img": "/lattine/JuicedRipperNew.png",
+      "img": "/lattine/JuicedRipperNew.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -393,7 +393,7 @@
     {
       "id": "27",
       "nome": "Reserve Watermelon",
-      "img": "/lattine/ReserveWatermelon.png",
+      "img": "/lattine/ReserveWatermelon.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -408,7 +408,7 @@
     {
       "id": "28",
       "nome": "Viking Berry",
-      "img": "/lattine/VikingBerry.png",
+      "img": "/lattine/VikingBerry.webp",
       "flavor": "",
       "year": 2024,
       "description": "",
@@ -423,7 +423,7 @@
     {
       "id": "29",
       "nome": "Hydro Sport Classic",
-      "img": "/lattine/HydroSportClassic.png",
+      "img": "/lattine/HydroSportClassic.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -438,7 +438,7 @@
     {
       "id": "30",
       "nome": "Reserve Peaches N creme",
-      "img": "/lattine/ReservePeachesNcreme.png",
+      "img": "/lattine/ReservePeachesNcreme.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -453,7 +453,7 @@
     {
       "id": "31",
       "nome": "Rehab Tea Peach Old",
-      "img": "/lattine/RehabTeaPeachOld.png",
+      "img": "/lattine/RehabTeaPeachOld.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -468,7 +468,7 @@
     {
       "id": "32",
       "nome": "Nitro Super Dry",
-      "img": "/lattine/NitroSuperDry.png",
+      "img": "/lattine/NitroSuperDry.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -483,7 +483,7 @@
     {
       "id": "33",
       "nome": "Dragon Ice Tea Lemon",
-      "img": "/lattine/DragonIceTeaLemon.png",
+      "img": "/lattine/DragonIceTeaLemon.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -498,7 +498,7 @@
     {
       "id": "34",
       "nome": "JavaLoca Moca",
-      "img": "/lattine/JavaLocaMoca.png",
+      "img": "/lattine/JavaLocaMoca.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -513,7 +513,7 @@
     {
       "id": "35",
       "nome": "Pipeline Punch",
-      "img": "/lattine/PipelinePunch.png",
+      "img": "/lattine/PipelinePunch.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -528,7 +528,7 @@
     {
       "id": "36",
       "nome": "Classic ZeroSugarNew",
-      "img": "/lattine/ClassicZeroSugarNew.png",
+      "img": "/lattine/ClassicZeroSugarNew.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -543,7 +543,7 @@
     {
       "id": "37",
       "nome": "Ultra Watermelon",
-      "img": "/lattine/UltraWatermelon.png",
+      "img": "/lattine/UltraWatermelon.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -558,7 +558,7 @@
     {
       "id": "38",
       "nome": "Ultra White",
-      "img": "/lattine/UltraWhite.png",
+      "img": "/lattine/UltraWhite.webp",
       "flavor": "",
       "year": 2018,
       "description": "",
@@ -573,7 +573,7 @@
     {
       "id": "39",
       "nome": "Juiced Ripper Old",
-      "img": "/lattine/JuicedRipperOld.png",
+      "img": "/lattine/JuicedRipperOld.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -588,7 +588,7 @@
     {
       "id": "40",
       "nome": "Reserve Kiwi StrawBerry",
-      "img": "/lattine/ReserveKiwiStrawBerry.png",
+      "img": "/lattine/ReserveKiwiStrawBerry.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -603,7 +603,7 @@
     {
       "id": "41",
       "nome": "Ultra Blue Hawaii",
-      "img": "/lattine/UltraBlueHawaii.png",
+      "img": "/lattine/UltraBlueHawaii.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -618,7 +618,7 @@
     {
       "id": "42",
       "nome": "Hydro Sport Blue",
-      "img": "/lattine/HydroSportBlue.png",
+      "img": "/lattine/HydroSportBlue.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -633,7 +633,7 @@
     {
       "id": "43",
       "nome": "Khaotic",
-      "img": "/lattine/Khaotic.png",
+      "img": "/lattine/Khaotic.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -648,7 +648,7 @@
     {
       "id": "44",
       "nome": "Rehab Tea Peach New",
-      "img": "/lattine/RehabTeaPeachNew.png",
+      "img": "/lattine/RehabTeaPeachNew.webp",
       "flavor": "",
       "year": 2024,
       "description": "",
@@ -663,7 +663,7 @@
     {
       "id": "45",
       "nome": "Nitro Cosmic Peach",
-      "img": "/lattine/NitroCosmicPeach.png",
+      "img": "/lattine/NitroCosmicPeach.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -678,7 +678,7 @@
     {
       "id": "46",
       "nome": "Dragon Ice Tea Peach",
-      "img": "/lattine/DragonIceTeaPeach.png",
+      "img": "/lattine/DragonIceTeaPeach.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -693,7 +693,7 @@
     {
       "id": "47",
       "nome": "Java Salted Caramel",
-      "img": "/lattine/JavaSaltedCaramel.png",
+      "img": "/lattine/JavaSaltedCaramel.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -708,7 +708,7 @@
     {
       "id": "48",
       "nome": "Valentino Rossi",
-      "img": "/lattine/ValentinoRossi.png",
+      "img": "/lattine/ValentinoRossi.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -723,7 +723,7 @@
     {
       "id": "49",
       "nome": "Ultra Citron",
-      "img": "/lattine/UltraCitron.png",
+      "img": "/lattine/UltraCitron.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -738,7 +738,7 @@
     {
       "id": "50",
       "nome": "Ultra Golden Pineapple",
-      "img": "/lattine/UltraGoldenPineapple.png",
+      "img": "/lattine/UltraGoldenPineapple.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -753,7 +753,7 @@
     {
       "id": "51",
       "nome": "Ultra White Mini",
-      "img": "/lattine/UltraWhiteMini.png",
+      "img": "/lattine/UltraWhiteMini.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -768,7 +768,7 @@
     {
       "id": "52",
       "nome": "Ultra Fiesta Mango",
-      "img": "/lattine/UltraFiestaMango.png",
+      "img": "/lattine/UltraFiestaMango.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -783,7 +783,7 @@
     {
       "id": "53",
       "nome": "Reserve White Pineapple",
-      "img": "/lattine/ReserveWhitePineapple.png",
+      "img": "/lattine/ReserveWhitePineapple.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -798,7 +798,7 @@
     {
       "id": "54",
       "nome": "Killer Brew Mean Bean",
-      "img": "/lattine/KillerBrewMeanBean.png",
+      "img": "/lattine/KillerBrewMeanBean.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -813,7 +813,7 @@
     {
       "id": "55",
       "nome": "Classica mini",
-      "img": "/lattine/ClassicMini.png",
+      "img": "/lattine/ClassicMini.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -828,7 +828,7 @@
     {
       "id": "56",
       "nome": "Monarch",
-      "img": "/lattine/Monach.png",
+      "img": "/lattine/Monach.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -843,7 +843,7 @@
     {
       "id": "57",
       "nome": "Rehab Wild Berry Tea",
-      "img": "/lattine/RehabWildBerryTea.png",
+      "img": "/lattine/RehabWildBerryTea.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -858,7 +858,7 @@
     {
       "id": "58",
       "nome": "Green Tea",
-      "img": "/lattine/GreenTea.png",
+      "img": "/lattine/GreenTea.webp",
       "flavor": "",
       "year": 2025,
       "description": "",
@@ -873,7 +873,7 @@
     {
       "id": "59",
       "nome": "Java Irish Cream",
-      "img": "/lattine/JavaIrishCream.png",
+      "img": "/lattine/JavaIrishCream.webp",
       "flavor": "",
       "year": 2023,
       "description": "",
@@ -888,7 +888,7 @@
     {
       "id": "60",
       "nome": "Punch MIXXD vecchia edizione",
-      "img": "/lattine/PunchMIXXDOld.png",
+      "img": "/lattine/PunchMIXXDOld.webp",
       "flavor": "",
       "year": 2019,
       "description": "",
@@ -903,7 +903,7 @@
     {
       "id": "61",
       "nome": "Hamilton Vecchia Edizione(buonissima)",
-      "img": "/lattine/HamiltonOld.png",
+      "img": "/lattine/HamiltonOld.webp",
       "flavor": "",
       "year": 2018,
       "description": "",
@@ -918,7 +918,7 @@
     {
       "id": "62",
       "nome": "Ultra Blue",
-      "img": "/lattine/UltraBlue.png",
+      "img": "/lattine/UltraBlue.webp",
       "flavor": "",
       "year": 2022,
       "description": "",
@@ -933,7 +933,7 @@
     {
       "id": "63",
       "nome": "Ultra Red",
-      "img": "/lattine/UltraRed.png",
+      "img": "/lattine/UltraRed.webp",
       "flavor": "",
       "year": 2018,
       "description": "",
@@ -948,7 +948,7 @@
     {
       "id": "64",
       "nome": "Ultra Black",
-      "img": "/lattine/UltraBlack.png",
+      "img": "/lattine/UltraBlack.webp",
       "flavor": "",
       "year": 2021,
       "description": "",
@@ -963,7 +963,7 @@
     {
       "id": "65",
       "nome": "Mango Loco",
-      "img": "/lattine/MangoLoco.png",
+      "img": "/lattine/MangoLoco.webp",
       "flavor": "",
       "year": 2018,
       "description": "",
@@ -978,7 +978,7 @@
     {
       "id": "66",
       "nome": "Super Fuel Mean Green",
-      "img": "/lattine/SuperFuelMeanGreen.png",
+      "img": "/lattine/SuperFuelMeanGreen.webp",
       "flavor": "",
       "year": 2020,
       "description": "",
@@ -993,7 +993,7 @@
     {
       "id": "67",
       "nome": "Electric Blue",
-      "img": "/lattine/electric blue.png",
+      "img": "/lattine/electric blue.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1008,7 +1008,7 @@
     {
       "id": "68",
       "nome": "Orange Dreamsicle",
-      "img": "/lattine/orange dreamsticle.png",
+      "img": "/lattine/orange dreamsticle.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1023,7 +1023,7 @@
     {
       "id": "69",
       "nome": "Ultra Wild Passion",
-      "img": "/lattine/ultra wild passion.png",
+      "img": "/lattine/ultra wild passion.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1068,7 +1068,7 @@
     {
       "id": "72",
       "nome": "Blind Lemon Strawberry Lemonade",
-      "img": "/lattine/blind-lemon_strawberry.avif",
+      "img": "/lattine/blind-lemon_strawberry.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1083,7 +1083,7 @@
     {
       "id": "73",
       "nome": "Blind Lemon Peach Lemonade",
-      "img": "/lattine/blind-lemon_peach.avif",
+      "img": "/lattine/blind-lemon_peach.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1098,7 +1098,7 @@
     {
       "id": "74",
       "nome": "Pipeline Punch Japan",
-      "img": "/lattine/pipelinepunchjap.png",
+      "img": "/lattine/pipelinepunchjap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1113,7 +1113,7 @@
     {
       "id": "75",
       "nome": "Zero Sugar Japan Old",
-      "img": "/lattine/ultrazerojap.png",
+      "img": "/lattine/ultrazerojap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1128,7 +1128,7 @@
     {
       "id": "76",
       "nome": "Ultra White Japan",
-      "img": "/lattine/ultrawhitejap.png",
+      "img": "/lattine/ultrawhitejap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1143,7 +1143,7 @@
     {
       "id": "77",
       "nome": "Ultra Violet Japan",
-      "img": "/lattine/ultravioletjap.png",
+      "img": "/lattine/ultravioletjap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1173,7 +1173,7 @@
     {
       "id": "79",
       "nome": "M3 Mini",
-      "img": "/lattine/m3minijap.png",
+      "img": "/lattine/m3minijap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1188,7 +1188,7 @@
     {
       "id": "80",
       "nome": "Ripper Japan",
-      "img": "/lattine/ripperjap.png",
+      "img": "/lattine/ripperjap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1203,7 +1203,7 @@
     {
       "id": "81",
       "nome": "Classic Bottiglia",
-      "img": "/lattine/classicjapcap.png",
+      "img": "/lattine/classicjapcap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1218,7 +1218,7 @@
     {
       "id": "82",
       "nome": "Pipeline Punch Bottiglia",
-      "img": "/lattine/PipelinePunchjapcap.png",
+      "img": "/lattine/PipelinePunchjapcap.webp",
       "flavor": "",
       "year": null,
       "description": "",
@@ -1233,7 +1233,7 @@
     {
       "id": "83",
       "nome": "VR46 Zero",
-      "img": "/lattine/vr46zero.png",
+      "img": "/lattine/vr46zero.webp",
       "flavor": "",
       "year": null,
       "description": "",

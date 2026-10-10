@@ -137,9 +137,16 @@ app.route('/api', api);
 
 /* ---------- production: serve the built SPA ---------- */
 
+// Hashed build files never change; images may be replaced under the same name, the page itself always revalidates.
+function cacheFor(path, c) {
+  if (path.includes('/assets/')) c.header('Cache-Control', 'public, max-age=31536000, immutable');
+  else if (path.endsWith('.html')) c.header('Cache-Control', 'no-cache');
+  else c.header('Cache-Control', 'public, max-age=604800');
+}
+
 if (existsSync('dist')) {
-  app.use('/*', serveStatic({ root: './dist' }));
-  app.get('*', serveStatic({ path: './dist/index.html' }));
+  app.use('/*', serveStatic({ root: './dist', onFound: cacheFor }));
+  app.get('*', serveStatic({ path: './dist/index.html', onFound: cacheFor }));
 }
 
 serve({ fetch: app.fetch, port: PORT }, () => {

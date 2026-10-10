@@ -137,7 +137,7 @@ export default function Home() {
       {cans && (
         <div className="marquee" aria-hidden="true">
           <div className="marquee__track">
-            {[...cans, ...cans].map((c, k) => <img key={k} src={c.img} alt="" />)}
+            {[...cans, ...cans].map((c, k) => <img key={k} src={c.img} alt="" loading="lazy" decoding="async" />)}
           </div>
         </div>
       )}

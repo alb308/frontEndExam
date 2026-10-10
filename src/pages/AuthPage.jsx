@@ -37,7 +37,7 @@ export default function AuthPage() {
     <div className="auth">
       <aside className="auth__wall" aria-hidden="true">
         <div className="auth__wallgrid">
-          {wall.map((c) => <img key={c.id} src={c.img} alt="" />)}
+          {wall.map((c) => <img key={c.id} src={c.img} alt="" loading="lazy" decoding="async" />)}
         </div>
         <div className="auth__wallcopy">
           <h2>Area riservata.</h2>

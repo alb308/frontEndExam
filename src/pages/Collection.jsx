@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../lib/auth';
 import { useCans } from '../lib/useCans';
@@ -14,6 +14,12 @@ const SORTS = {
 };
 
 export default function Collection() {
+  // Fetch the 3D viewer while the visitor browses, so opening a can doesn't wait for it.
+  useEffect(() => {
+    const t = setTimeout(() => import('../components/Can3D'), 1200);
+    return () => clearTimeout(t);
+  }, []);
+
   const { isOwner } = useAuth();
   const { cans, error } = useCans();
   const [params, setParams] = useSearchParams();
