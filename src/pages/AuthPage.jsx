@@ -1,95 +1,80 @@
-
-import React, { useState, useEffect } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../redux/actions/authActions';
-import './AuthPage.css';
+import { useAuth } from '../lib/auth';
+import { useCans } from '../lib/useCans';
 
-function AuthPage() {
-  const location = useLocation();
+export default function AuthPage() {
+  const { user, login } = useAuth();
+  const { cans } = useCans();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const location = useLocation();
+  const from = location.state?.from || '/collezione?davotare=1';
 
-  const { loading, error: authError, isAuthenticated } = useSelector(state => state.auth);
+  const [form, setForm] = useState({ email: '', password: '' });
+  const [error, setError] = useState(null);
+  const [busy, setBusy] = useState(false);
+  const [show, setShow] = useState(false);
 
-  const [formData, setFormData] = useState({
-    email: '',
-    password: ''
-  });
-  const [error, setError] = useState('');
+  useEffect(() => { if (user) navigate(from, { replace: true }); }, [user, from, navigate]);
 
-  const from = location.state?.from || '/';
+  const wall = useMemo(() => (cans ?? []).slice(0, 24), [cans]);
+  const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate(from, { replace: true });
-    }
-  }, [isAuthenticated, navigate, from]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    setError('');
-
-    const result = await dispatch(login(formData.email, formData.password));
-    if (!result.success) {
-      setError(result.error || 'Errore durante il login');
+    setError(null);
+    setBusy(true);
+    try {
+      await login(form.email, form.password);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setBusy(false);
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-card">
-        <h2>Accedi al tuo account</h2>
+    <div className="auth">
+      <aside className="auth__wall" aria-hidden="true">
+        <div className="auth__wallgrid">
+          {wall.map((c) => <img key={c.id} src={c.img} alt="" />)}
+        </div>
+        <div className="auth__wallcopy">
+          <h2>Area riservata.</h2>
+          <p>Solo per il proprietario della collezione: da qui si votano le lattine.</p>
+        </div>
+      </aside>
 
-        {(error || authError) && <div className="auth-error">{error || authError}</div>}
+      <section className="auth__panel">
+        <form className="form" onSubmit={onSubmit} noValidate>
+          <p className="eyebrow">Proprietario</p>
+          <h1 className="form__title">Accedi</h1>
 
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+          <label className="field">
+            <span>Email</span>
+            <input type="email" value={form.email} onChange={update('email')} autoComplete="email" required />
+          </label>
+          <label className="field">
+            <span>Password</span>
+            <div className="field__pw">
+              <input
+                type={show ? 'text' : 'password'}
+                value={form.password}
+                onChange={update('password')}
+                autoComplete="current-password"
+                required
+              />
+              <button type="button" onClick={() => setShow((s) => !s)}>{show ? 'Nascondi' : 'Mostra'}</button>
+            </div>
+          </label>
 
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength="6"
-            />
-          </div>
+          {error && <p className="form__error" role="alert">{error}</p>}
 
-          <button
-            type="submit"
-            className="auth-button"
-            disabled={loading}
-          >
-            {loading ? (
-              <span className="auth-spinner"></span>
-            ) : 'Accedi'}
+          <button className="btn btn--accent btn--block" disabled={busy}>
+            {busy ? 'Un attimo…' : 'Entra'}
           </button>
         </form>
-      </div>
+      </section>
     </div>
   );
 }
-
-export default AuthPage;

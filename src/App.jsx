@@ -1,52 +1,32 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { checkAuth } from "./redux/actions/authActions";
-import AdminPanel from "./pages/AdminPanel";
-import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
-import CanDetailPage from './pages/CanDetailPage';
+import { useEffect } from 'react';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import Nav from './components/Nav';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import Collection from './pages/Collection';
+import CanPage from './pages/CanPage';
+import Ranking from './pages/Ranking';
+import AuthPage from './pages/AuthPage';
+import NotFound from './pages/NotFound';
 
-import Prodotti from "./pages/Prodotti";
-import NotFound from "./pages/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
-
-import "./App.css";
-
-function Layout() {
-  const location = useLocation();
-  const dispatch = useDispatch();
-  const hideNavbar = ["/login"].includes(location.pathname);
-
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
+export default function App() {
+  const { pathname } = useLocation();
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
 
   return (
     <>
-      {!hideNavbar && <Navbar />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/admin" element={
-          <ProtectedRoute requiredRole="admin">
-            <AdminPanel />
-          </ProtectedRoute>
-        } />
-        <Route path="/prodotti" element={<Prodotti />} />
-        <Route path="/cans/:id" element={<CanDetailPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Nav />
+      <main>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/collezione" element={<Collection />} />
+          <Route path="/lattina/:id" element={<CanPage />} />
+          <Route path="/classifica" element={<Ranking />} />
+          <Route path="/accedi" element={<AuthPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </main>
+      <Footer />
     </>
   );
 }
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
-  );
-}
-
-export default App;
