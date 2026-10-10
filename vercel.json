@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/", "destination": "https://canvault.albertogiunta.it/", "permanent": true },
     { "source": "/:path*", "destination": "https://canvault.albertogiunta.it/:path*", "permanent": true }
   ]
 }
