@@ -91,7 +91,7 @@ export default function Home() {
             {right && <img key={`r${right.id}`} className="hero__can hero__can--side hero__can--r" src={right.img} alt="" />}
             {hero && (
               <div className="hero__model">
-                <Suspense fallback={<img className="hero__can hero__can--main" src={hero.img} alt={hero.name} />}>
+                <Suspense fallback={<div className="can3d"><span className="loader__bars can3d__wait" aria-hidden="true"><i /><i /><i /></span></div>}>
                   <Can3D src={hero.img} alt={hero.name} glow={categoryColor(hero.category)} />
                 </Suspense>
               </div>

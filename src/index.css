@@ -753,6 +753,7 @@ main { min-height: 70vh; }
   height: 84%; width: 90%; object-fit: contain;
   filter: drop-shadow(0 30px 40px rgba(0,0,0,.4));
 }
+.can3d__wait { animation: fadeIn .4s var(--ease) .3s both; }
 .can3d__hint {
   position: absolute; top: -6px; left: 50%; transform: translateX(-50%); white-space: nowrap;
   font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim);

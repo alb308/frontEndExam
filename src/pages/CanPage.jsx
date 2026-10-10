@@ -89,7 +89,7 @@ export default function CanPage() {
         <div className="can__layout">
           <div className="can__stage">
             <div className="can__halo" />
-            <Suspense fallback={<img src={can.img} alt={can.name} className="can__img" />}>
+            <Suspense fallback={<div className="can3d"><span className="loader__bars can3d__wait" aria-hidden="true"><i /><i /><i /></span></div>}>
               <Can3D src={can.img} alt={can.name} glow={glow} hint />
             </Suspense>
             <div className="can__flip">
