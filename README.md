@@ -22,13 +22,15 @@ C'è un solo account, il proprietario, creato al primo avvio con `ADMIN_EMAIL` e
 
 ## Pubblicazione
 
-Il sito gira come un unico servizio Node che serve sia le pagine sia l'API, e ha bisogno di un disco permanente per il database. `render.yaml` lo configura su Render:
+Online gira sul server Hetzner come container Docker (`Dockerfile`, `deploy/hetzner/compose.yml`), dietro il Caddy già presente sul server. Il container non apre porte pubbliche: Caddy lo raggiunge come `canvault:3001` sulla rete Docker `eubaro_default`. Il database sta nel volume `canvault-data`, quindi voti e sessioni restano tra un aggiornamento e l'altro.
 
-1. Su Render: New → Blueprint, e scegli questo repository.
-2. Inserisci `ADMIN_EMAIL` e `ADMIN_PASSWORD` quando li chiede.
-3. Il database sta sul disco montato in `/var/data` (variabile `DATA_DIR`), quindi voti e sessioni restano tra un deploy e l'altro.
+Per aggiornare il sito dopo un push:
 
-Su un altro host Node basta: build `npm ci && npm run build`, avvio `npm start`, Node 22.13 o successivo, `DATA_DIR` puntata a un disco permanente.
+```bash
+ssh hetzner 'cd /opt/canvault && git pull && docker compose -f deploy/hetzner/compose.yml up -d --build'
+```
+
+Le credenziali del proprietario sono in `/opt/canvault/deploy/hetzner/.env` sul server (non nel repo).
 
 Le foto dei retro vengono da [Open Food Facts](https://world.openfoodfacts.org) (CC BY-SA); il credito è nel footer.
 

@@ -24,3 +24,6 @@ dist-ssr
 
 # local database
 server/data
+
+# secrets
+.env

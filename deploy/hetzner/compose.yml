@@ -1,0 +1,28 @@
+# CANVAULT su un server con Docker e un Caddy già attivo.
+# Le variabili arrivano da .env, accanto a questo file (ADMIN_EMAIL, ADMIN_PASSWORD, PROXY_NETWORK).
+#
+# Il sito non apre porte pubbliche: risponde come "canvault:3001" sulla rete Docker
+# PROXY_NETWORK, dove lo raggiunge Caddy con  dominio { reverse_proxy canvault:3001 }
+services:
+  app:
+    build:
+      context: ../..
+    container_name: canvault
+    restart: unless-stopped
+    environment:
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+    volumes:
+      - canvault-data:/data
+    networks: [proxy]
+    logging:
+      driver: json-file
+      options: { max-size: 10m, max-file: "3" }
+
+networks:
+  proxy:
+    name: ${PROXY_NETWORK}
+    external: true
+
+volumes:
+  canvault-data:
