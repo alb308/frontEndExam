@@ -3,6 +3,10 @@
 #
 # Il sito non apre porte pubbliche: risponde come "canvault:3001" sulla rete Docker
 # PROXY_NETWORK, dove lo raggiunge Caddy con  dominio { reverse_proxy canvault:3001 }
+# Nome di progetto esplicito: senza, Docker userebbe il nome della cartella ("hetzner")
+# e si scontrerebbe con altri progetti nella stessa situazione, come giococarte.
+name: canvault
+
 services:
   app:
     build:

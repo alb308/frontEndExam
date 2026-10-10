@@ -27,7 +27,7 @@ Online gira sul server Hetzner come container Docker (`Dockerfile`, `deploy/hetz
 Per aggiornare il sito dopo un push:
 
 ```bash
-ssh hetzner 'cd /opt/canvault && git pull && docker compose -f deploy/hetzner/compose.yml up -d --build'
+ssh hetzner 'cd /opt/canvault/deploy/hetzner && git pull && docker compose up -d --build'
 ```
 
 Le credenziali del proprietario sono in `/opt/canvault/deploy/hetzner/.env` sul server (non nel repo).
