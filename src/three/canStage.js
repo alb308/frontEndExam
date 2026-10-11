@@ -78,12 +78,27 @@ function readPhoto(img) {
     gain[b] = THREE.MathUtils.lerp(1, g, THREE.MathUtils.smoothstep(x, 0.5, 0.9));
   }
 
+  const rows = bottom - top + 1;
   const widths = [];
   for (let y = top; y <= bottom; y++) widths.push(right[y] - left[y]);
   widths.sort((a, b) => a - b);
-  const aspect = (bottom - top + 1) / Math.max(1, widths[widths.length >> 1]);
+  const body = Math.max(1, widths[widths.length >> 1]);
+  const aspect = rows / body;
 
-  return { px, w, top, rows: bottom - top + 1, left, right, gain, aspect };
+  // Radius of each row relative to the body (lightly smoothed). Cans only narrow in the last few
+  // percent at the top; bottles narrow well below that, into a neck.
+  const profile = new Float32Array(rows);
+  const win = Math.max(1, Math.round(rows / 120));
+  for (let i = 0; i < rows; i++) {
+    let sum = 0, n = 0;
+    for (let j = Math.max(0, i - win); j <= Math.min(rows - 1, i + win); j++) { sum += right[top + j] - left[top + j]; n++; }
+    profile[i] = sum / n / body;
+  }
+  let neck = Infinity;
+  for (let i = Math.floor(rows * 0.06); i < rows * 0.35; i++) neck = Math.min(neck, profile[i]);
+  const bottle = neck < 0.75;
+
+  return { px, w, top, rows, left, right, gain, aspect, profile, bottle };
 }
 
 // Colour of photo p at normalised height t (0 = top) and across-position x (−1…1).
@@ -139,7 +154,7 @@ function buildSkin(front, back) {
     }
   }
   octx.putImageData(dst, 0, 0);
-  return { canvas: out, aspect: front.aspect };
+  return { canvas: out, aspect: front.aspect, profile: front.bottle ? front.profile : null };
 }
 
 /* =========================================================
@@ -183,6 +198,24 @@ function buildCan(H) {
   rivet.translate(0, H - 0.05, 0.02);
 
   return { wall, base, lid, rim, tab, rivet };
+}
+
+// Bottles: one lathe that follows the photo's silhouette row by row (neck, shoulder, cap),
+// closed at both ends. Each photo row already spans exactly that row's width, so the print lines up.
+function buildBottle(H, profile) {
+  const STEPS = 160;
+  const pts = [v2(0, 0)];
+  for (let k = 0; k <= STEPS; k++) {
+    const t = 1 - k / STEPS; // photo row: 1 = bottom
+    const r = profile[Math.round(t * (profile.length - 1))];
+    pts.push(v2(Math.max(0.02, r), H * (1 - t)));
+  }
+  pts.push(v2(0, H));
+  const wall = new THREE.LatheGeometry(pts, 128, -Math.PI, Math.PI * 2);
+  const pos = wall.attributes.position;
+  const uv = wall.attributes.uv;
+  for (let i = 0; i < uv.count; i++) uv.setY(i, pos.getY(i) / H);
+  return { wall };
 }
 
 /* =========================================================
@@ -366,18 +399,18 @@ export class CanStage {
 
     const first = !this.can.children.length;
     if (first || this.calm) {
-      this.swap(texture, skin.aspect);
+      this.swap(texture, skin);
       this.anim = this.calm ? null : { phase: 'in', t: 0 };
       if (first) this.onReady?.();
     } else {
       this.pending?.texture.dispose();
-      this.pending = { texture, aspect: skin.aspect };
+      this.pending = { texture, skin };
       if (this.anim?.phase !== 'out') this.anim = { phase: 'out', t: 0 };
       this.face = 2 * Math.ceil((this.angle + 0.5) / (Math.PI * 2)); // whip round to the next front
     }
   }
 
-  swap(texture, aspect) {
+  swap(texture, { aspect, profile }) {
     this.labelMat.map?.dispose();
     this.labelMat.map = texture;
     this.labelMat.needsUpdate = true;
@@ -385,15 +418,19 @@ export class CanStage {
     for (const m of this.can.children) m.geometry.dispose();
     this.can.clear();
     this.H = 2 * aspect;
-    const g = buildCan(this.H);
-    this.can.add(
-      new THREE.Mesh(g.wall, this.labelMat),
-      new THREE.Mesh(g.base, this.metalMat),
-      new THREE.Mesh(g.lid, this.metalMat),
-      new THREE.Mesh(g.rim, this.metalMat),
-      new THREE.Mesh(g.tab, this.metalMat),
-      new THREE.Mesh(g.rivet, this.metalMat),
-    );
+    if (profile) {
+      this.can.add(new THREE.Mesh(buildBottle(this.H, profile).wall, this.labelMat));
+    } else {
+      const g = buildCan(this.H);
+      this.can.add(
+        new THREE.Mesh(g.wall, this.labelMat),
+        new THREE.Mesh(g.base, this.metalMat),
+        new THREE.Mesh(g.lid, this.metalMat),
+        new THREE.Mesh(g.rim, this.metalMat),
+        new THREE.Mesh(g.tab, this.metalMat),
+        new THREE.Mesh(g.rivet, this.metalMat),
+      );
+    }
     this.can.position.y = -this.H / 2;
     this.frame();
   }
@@ -434,7 +471,7 @@ export class CanStage {
         const k = easeInCubic(Math.min(a.t, 1));
         scale = 1 - 0.18 * k; drop = -0.9 * k;
         if (a.t >= 1) {
-          this.swap(this.pending.texture, this.pending.aspect);
+          this.swap(this.pending.texture, this.pending.skin);
           this.pending = null;
           this.anim = { phase: 'in', t: 0 };
           scale = 0.82; drop = -0.9;
